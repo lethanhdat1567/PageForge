@@ -1,0 +1,156 @@
+.link-wrap {
+  display: flex;
+  align-items: center;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  border-radius: 999px;
+  transition: all 0.2s ease;
+  gap: 10px;
+  font-size: 22px;
+  font-weight: 400;
+  cursor: pointer;
+  &:hover {
+    .icon-wrap {
+      transform: translate(4px, -4px);
+    }
+  }
+  &.lime-outline,
+  &.white-lime-outline,
+  &.white-black-outline {
+    gap: 4px;
+  }
+}
+.icon-wrap {
+  border-radius: 100%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: ease 0.2s;
+  .link.lime-outline &,
+  .link.white-lime-outline &,
+  .link.white-black-outline & {
+    width: auto;
+    height: auto;
+    padding: 0;
+  }
+}
+// Variants
+
+.white-lime-outline {
+  .icon {
+    color: var(--primary-color);
+  }
+
+  .label {
+    color: #111827;
+  }
+}
+
+.white-black-outline {
+  .icon {
+    color: black;
+  }
+
+  .label {
+    color: #111827;
+  }
+}
+
+.dark-lime {
+  .icon-wrap {
+    background-color: #18181b;
+  }
+  .icon {
+    color: var(--primary-color);
+  }
+
+  .label {
+    color: white;
+  }
+}
+
+.dark-white {
+  .icon-wrap {
+    background-color: #18181b;
+  }
+  .icon {
+    color: white;
+  }
+
+  .label {
+    color: white;
+  }
+}
+
+.lime-black {
+  .icon-wrap {
+    background-color: var(--primary-color);
+  }
+  .icon {
+    color: black;
+  }
+
+  .label {
+    color: black;
+  }
+}
+
+.lime-white {
+  .icon-wrap {
+    background-color: var(--primary-color);
+  }
+  .icon {
+    color: white;
+  }
+
+  .label {
+    color: white;
+  }
+}
+
+.lime-outline {
+  .icon-wrap {
+    background-color: transparent;
+  }
+  .icon {
+    color: var(--primary-color);
+  }
+
+  .label {
+    color: var(--primary-color);
+  }
+}
+
+.white-lime {
+  .icon-wrap {
+    background-color: #fff;
+  }
+  .icon {
+    color: var(--primary-color);
+  }
+
+  .label {
+    color: white;
+  }
+}
+
+.white-black {
+  .icon-wrap {
+    background-color: #fff;
+  }
+  .icon {
+    color: black;
+  }
+
+  .label {
+    color: black;
+  }
+}
