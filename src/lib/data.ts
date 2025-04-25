@@ -9,7 +9,7 @@ import {
 export const navbarData = [
   {
     name: "Templates",
-    path: "/",
+    path: "/templates",
   },
   {
     name: "About us",
@@ -17,11 +17,11 @@ export const navbarData = [
   },
   {
     name: "Articels",
-    path: "/",
+    path: "/articels",
   },
   {
     name: "Contact us",
-    path: "/",
+    path: "/contact",
   },
 ];
 
@@ -79,4 +79,23 @@ export const contactInfoData = [
   " Email: info@positivus.com",
   "Phone: 555-567-8901",
   "Address: 1234 Main St Moonstone City, Stardust State 12345",
+];
+
+export const templatesType = [
+  {
+    id: 1,
+    name: "Link in Bio Page",
+  },
+  {
+    id: 2,
+    name: "Portfolio Website",
+  },
+  {
+    id: 3,
+    name: "Landing Page",
+  },
+  {
+    id: 4,
+    name: "Event Landing Page",
+  },
 ];

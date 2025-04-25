@@ -7,6 +7,7 @@ import ServiceLandingPage from "./store/service-landingpage.png";
 import ServiceContent from "./store/service-content.png";
 import CTA from "./store/CTA.png";
 import ContactBanner from "./store/ContactBanner.png";
+import Cover from "./store/Cover.png";
 
 export const imgs = {
   Logo,
@@ -18,4 +19,5 @@ export const imgs = {
   ServiceContent,
   CTA,
   ContactBanner,
+  Cover,
 };
