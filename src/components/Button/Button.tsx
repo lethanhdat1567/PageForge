@@ -10,7 +10,8 @@ type Props = {
   disabled?: boolean;
   fullWidth?: boolean;
   children: React.ReactNode;
-};
+  props?: unknown;
+} & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 function Button({
   variants = "primary",
@@ -19,6 +20,7 @@ function Button({
   disabled = false,
   fullWidth = false,
   children,
+  ...props
 }: Props) {
   // Kết hợp class từ các variant và className người dùng truyền vào
   const buttonClass = cx("button", variants, className, {
@@ -27,7 +29,12 @@ function Button({
   });
 
   return (
-    <button className={buttonClass} onClick={onClick} disabled={disabled}>
+    <button
+      className={buttonClass}
+      onClick={onClick}
+      disabled={disabled}
+      {...props}
+    >
       {children}
     </button>
   );

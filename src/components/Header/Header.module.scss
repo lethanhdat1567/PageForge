@@ -1,0 +1,24 @@
+.wrap {
+  height: var(--header-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  .nav-item {
+    position: relative;
+    font-size: 18px;
+    font-weight: 500;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+.btn {
+  padding: 14px 30px !important;
+  font-size: 18px !important;
+  font-weight: 500;
+}

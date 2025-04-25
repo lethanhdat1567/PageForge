@@ -1,0 +1,27 @@
+.header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.header-desc {
+  width: 580px;
+  font-size: 18px;
+}
+
+.wrap {
+  .header {
+    margin-bottom: 80px;
+  }
+  .body {
+    background-color: var(--white-color);
+    padding: 100px;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+}
+.banner {
+  position: absolute;
+  right: -323px;
+  top: 0;
+}

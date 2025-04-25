@@ -78,6 +78,9 @@
   --sidebar-ring: oklch(0.708 0 0);
 
   /* Custom */
+  /* Measure */
+  --header-h: 68px;
+  /* Color */
   --primary-color: #b9ff66;
   --dark-color: #191a23;
   --white-color: #f3f3f3;

@@ -1,0 +1,30 @@
+.wrap {
+  .banner {
+    padding-top: 86%;
+    position: relative;
+    .image {
+      position: absolute;
+      object-fit: cover;
+      inset: 0;
+    }
+  }
+  .info {
+    width: 600px;
+    .title {
+      font-size: 60px;
+      line-height: 78px;
+      font-weight: 600;
+    }
+    .desc {
+      margin-top: 30px;
+      font-size: 20px;
+      line-height: 40px;
+    }
+    .btn {
+      margin-top: 50px;
+      width: 264px;
+      padding: 16px 10px;
+      font-size: 20px;
+    }
+  }
+}

@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <GlobalStyle>
       <html lang="en">
-        <body className={` ${spaceGrotesk.variable} antialiased`}>
+        <body className={` ${spaceGrotesk.className} antialiased`}>
           {children}
         </body>
       </html>
