@@ -3,7 +3,7 @@ import styles from "./Header.module.scss";
 import Logo from "@/components/Logo/Logo";
 import { navbarData } from "@/lib/data";
 import Link from "next/link";
-import Button from "@/components/Button/Button";
+import SignInButton from "@/components/SignInButton/SignInButton";
 
 const cx = classNames.bind(styles);
 
@@ -18,9 +18,9 @@ function Header() {
           </Link>
         ))}
       </nav>
-      <Button variants="outline" className={cx("btn")}>
-        Start building
-      </Button>
+      <Link href={"/register"}>
+        <SignInButton />
+      </Link>
     </header>
   );
 }

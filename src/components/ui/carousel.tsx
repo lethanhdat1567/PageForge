@@ -51,8 +51,6 @@ function Carousel({
   plugins,
   className,
   children,
-  handlePrevSlide,
-  handleNextSlide,
   ...props
 }: React.ComponentProps<"div"> & CarouselProps) {
   const [carouselRef, api] = useEmblaCarousel(
@@ -73,18 +71,10 @@ function Carousel({
   }, []);
 
   const scrollPrev = React.useCallback(() => {
-    if (handlePrevSlide) {
-      handlePrevSlide();
-    }
-
     api?.scrollPrev();
   }, [api]);
 
   const scrollNext = React.useCallback(() => {
-    if (handleNextSlide) {
-      handleNextSlide();
-    }
-
     api?.scrollNext();
   }, [api]);
 

@@ -1,0 +1,98 @@
+.sign-in-button {
+  position: relative;
+  border: none;
+  background: transparent;
+  padding: 0;
+  outline: none;
+  cursor: pointer;
+  font-family: monospace;
+  font-weight: 300;
+  text-transform: uppercase;
+  font-size: 1rem;
+
+  // Layer 1: Overlay bóng đen
+  .background-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.25);
+    border-radius: 0.5rem;
+    transform: translateY(2px);
+    transition: transform 600ms cubic-bezier(0.3, 0.7, 0.4, 1);
+    z-index: 1;
+  }
+  .select-none {
+    font-weight: 500;
+    font-size: 16px;
+  }
+  // Layer 2: Gradient nền
+  .background-gradient {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 0.5rem;
+    background: linear-gradient(to left, #8ccf40, #b9ff66, #8ccf40);
+    z-index: 2;
+  }
+
+  // Layer 3: Nội dung
+  .button-content {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    font-size: 1.125rem;
+    color: black;
+    border-radius: 0.5rem;
+    transform: translateY(-4px);
+    gap: 0.75rem;
+    background: linear-gradient(to right, #b9ff66, #a5f24c, #8ccf40);
+    transition: transform 600ms cubic-bezier(0.3, 0.7, 0.4, 1),
+      filter 600ms cubic-bezier(0.3, 0.7, 0.4, 1);
+    filter: brightness(100%);
+    z-index: 3;
+  }
+
+  // Icon trong button
+  .icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-left: 0.5rem;
+    margin-right: -0.25rem;
+    transition: transform 250ms;
+  }
+
+  // === Hover States ===
+
+  &:hover {
+    .background-overlay {
+      transform: translateY(4px);
+      transition-duration: 250ms;
+    }
+
+    .button-content {
+      transform: translateY(-6px);
+      transition-duration: 250ms;
+      filter: brightness(110%);
+    }
+
+    .icon {
+      transform: translateX(4px);
+    }
+  }
+
+  &:active {
+    .background-overlay {
+      transform: translateY(1px);
+    }
+
+    .button-content {
+      transform: translateY(-2px);
+    }
+  }
+}

@@ -1,5 +1,4 @@
-import { ServiceType } from "@/lib/type";
-import { imgs } from "../../public/images";
+import { Palette, Pencil, UsersRound } from "lucide-react";
 import {
   FacebookIcon,
   LinkedIcon,
@@ -8,55 +7,16 @@ import {
 
 export const navbarData = [
   {
+    name: "Home",
+    path: "/",
+  },
+  {
     name: "Templates",
     path: "/templates",
   },
   {
-    name: "About us",
-    path: "/",
-  },
-  {
-    name: "Articels",
-    path: "/articels",
-  },
-  {
     name: "Contact us",
     path: "/contact",
-  },
-];
-
-export const serviceData: ServiceType[] = [
-  {
-    title: "Search engine",
-    subTitle: "optimization",
-    variant: "outline",
-    linkVariant: "dark-lime",
-    image: imgs.ServiceContent,
-    path: "/",
-  },
-  {
-    title: "Pay-per-click",
-    subTitle: "advertising",
-    variant: "primary",
-    linkVariant: "dark-lime",
-    image: imgs.ServiceLandingPage,
-    path: "/",
-  },
-  {
-    title: "Social Media",
-    subTitle: "Marketing",
-    variant: "secondary",
-    linkVariant: "white-black",
-    image: imgs.ServiceAnalysh,
-    path: "/",
-  },
-  {
-    title: "Email",
-    subTitle: "Marketing",
-    variant: "outline",
-    linkVariant: "dark-lime",
-    image: imgs.ServiceSocial,
-    path: "/",
   },
 ];
 
@@ -97,5 +57,31 @@ export const templatesType = [
   {
     id: 4,
     name: "Event Landing Page",
+  },
+  {
+    id: 5,
+    name: "Event Landing Page",
+  },
+  {
+    id: 6,
+    name: "Event Landing Page",
+  },
+];
+
+export const howItWorkData = [
+  {
+    icon: Pencil,
+    title: "1. Create your free PageForge account",
+    desc: "Hear from Our Satisfied Clients: Read Our Testimonials to Learn More about Our Digital Marketing Services Hear from Our Satisfied Clients: Read Our Testimonials to Learn More about Our Digital",
+  },
+  {
+    icon: Palette,
+    title: "2. Choice your own custom PageForge",
+    desc: "Hear from Our Satisfied Clients: Read Our Testimonials to Learn More about Our Digital Marketing Services Hear from Our Satisfied Clients: Read Our Testimonials to Learn More about Our Digital",
+  },
+  {
+    icon: UsersRound,
+    title: "3. Connect and grow your cross-channel following",
+    desc: "Hear from Our Satisfied Clients: Read Our Testimonials to Learn More about Our Digital Marketing Services Hear from Our Satisfied Clients: Read Our Testimonials to Learn More about Our Digital",
   },
 ];

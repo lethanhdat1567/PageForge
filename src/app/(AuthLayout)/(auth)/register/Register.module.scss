@@ -1,0 +1,30 @@
+.wrap {
+  .body {
+    width: 370px;
+    .title {
+      text-align: center;
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 30px;
+    }
+    .forgot-text {
+      display: block;
+      text-align: center;
+      margin: 20px 0px;
+      color: #292828;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+.form-login-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.input {
+  background-color: #fff;
+  border: 1px solid #929191;
+}

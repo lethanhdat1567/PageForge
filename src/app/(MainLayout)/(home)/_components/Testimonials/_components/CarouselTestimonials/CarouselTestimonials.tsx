@@ -7,35 +7,49 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { useState } from "react";
+import React, { useState } from "react";
 import CarouselTestimonialsItem from "@/app/(MainLayout)/(home)/_components/Testimonials/_components/CarouselTestimonials/CarouselTestimonialsItem";
 import { StarPagination } from "../../../../../../../../public/icons/icons";
+import { type CarouselApi } from "@/components/ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
 
 const cx = classNames.bind(styles);
 
 function CarouselTestimonials() {
+  const [api, setApi] = React.useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
 
-  const handlePrevSlide = () => {
-    setCurrent((prev) => prev - 1);
-  };
+  React.useEffect(() => {
+    if (!api) return;
 
-  const handleNextSlide = () => {
-    setCurrent((prev) => prev + 1);
-  };
+    const onSelect = () => {
+      const selected = api.selectedScrollSnap();
+      setCurrent(selected);
+    };
 
-  const handleSlideChange = (index: number) => {
-    setCurrent(index);
-  };
+    api.on("select", onSelect);
+
+    // Lấy luôn index hiện tại khi vừa mount
+    onSelect();
+
+    // Cleanup event listener (best practice)
+    return () => {
+      api.off("select", onSelect);
+    };
+  }, [api]);
 
   return (
     <Carousel
       opts={{
         align: "center",
-        loop: false,
+        loop: true,
       }}
-      handleNextSlide={handleNextSlide}
-      handlePrevSlide={handlePrevSlide}
+      plugins={[
+        Autoplay({
+          delay: 2000,
+        }),
+      ]}
+      setApi={setApi}
       className="w-full max-w-6xl mx-auto overflow-hidden h-[400px]"
     >
       <CarouselContent className="-ml-4">
@@ -55,7 +69,6 @@ function CarouselTestimonials() {
           {Array.from({ length: 4 }).map((_, i) => (
             <button
               key={i}
-              onClick={() => handleSlideChange(i)}
               className={cx("pagina-btn", { active: current === i })}
             >
               {StarPagination}
