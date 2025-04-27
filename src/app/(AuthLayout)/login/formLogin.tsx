@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import classNames from "classnames/bind";
-import styles from "./Register.module.scss";
+import styles from "./Login.module.scss";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -14,27 +15,44 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { useAppContext } from "@/app/AppProvider";
+import {
+  loginBodyType,
+  registerResType,
+} from "@/schemaValidations/authe.schema";
+import authApiRequest from "@/HttpRequest/authRequest";
+import { handleErrorApi } from "@/lib/utils";
+import { useRouter } from "next/navigation";
 
 const cx = classNames.bind(styles);
 
 const formSchema = z.object({
-  username: z.string(),
   email: z.string().email(),
   password: z.string().min(6),
 });
 
-function FormRegister() {
-  const form = useForm<z.infer<typeof formSchema>>({
+function FormLogin() {
+  const router = useRouter();
+  const { setUser } = useAppContext();
+  // 1. Define your form.
+  const form = useForm<loginBodyType>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      username: "",
       email: "",
       password: "",
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
+  // 2. Define a submit handler.
+  async function onSubmit(values: loginBodyType) {
+    try {
+      const result = await authApiRequest.login(values);
+      await authApiRequest.auth({ data: result.payload as registerResType });
+      setUser((result.payload as any).data.account);
+      router.push("/admin");
+    } catch (error: any) {
+      handleErrorApi({ error, setError: form.setError });
+    }
   }
 
   return (
@@ -45,30 +63,13 @@ function FormRegister() {
       >
         <FormField
           control={form.control}
-          name="username"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Tên đăng nhập</FormLabel>
-              <FormControl>
-                <Input
-                  placeholder="Tên của bạn..."
-                  {...field}
-                  className={cx("input")}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
           name="email"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Email</FormLabel>
               <FormControl>
                 <Input
-                  placeholder="Email của bạn..."
+                  placeholder="email của bạn..."
                   {...field}
                   className={cx("input")}
                 />
@@ -85,7 +86,7 @@ function FormRegister() {
               <FormLabel>Mật khẩu</FormLabel>
               <FormControl>
                 <Input
-                  placeholder="Mật khẩu của bạn..."
+                  placeholder="mật khẩu của bạn..."
                   {...field}
                   className={cx("input")}
                   type="password"
@@ -95,10 +96,10 @@ function FormRegister() {
             </FormItem>
           )}
         />
-        <Button>Đăng ký</Button>
+        <Button type="submit">Đăng nhập</Button>
       </form>
     </Form>
   );
 }
 
-export default FormRegister;
+export default FormLogin;

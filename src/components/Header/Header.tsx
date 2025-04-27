@@ -1,13 +1,25 @@
+"use client";
+
 import classNames from "classnames/bind";
 import styles from "./Header.module.scss";
 import Logo from "@/components/Logo/Logo";
 import { navbarData } from "@/lib/data";
 import Link from "next/link";
 import SignInButton from "@/components/SignInButton/SignInButton";
+import SliceSession from "@/components/SliceSession/SliceSession";
+import { useEffect, useState } from "react";
+import Button from "@/components/Button/Button";
+import LogoutButton from "@/components/LogoutButton/LogoutButton";
 
 const cx = classNames.bind(styles);
 
 function Header() {
+  const [token, setToken] = useState();
+
+  useEffect(() => {
+    setToken(JSON.parse(localStorage.getItem("tokens")));
+  }, []);
+
   return (
     <header className={cx("wrap")}>
       <Logo />
@@ -18,9 +30,14 @@ function Header() {
           </Link>
         ))}
       </nav>
-      <Link href={"/register"}>
-        <SignInButton />
-      </Link>
+      {token ? (
+        <LogoutButton />
+      ) : (
+        <Link href={"/register"}>
+          <SignInButton />
+        </Link>
+      )}
+      <SliceSession />
     </header>
   );
 }

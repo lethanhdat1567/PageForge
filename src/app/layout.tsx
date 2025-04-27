@@ -3,6 +3,8 @@ import { Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import "aos/dist/aos.css";
 import GlobalStyle from "@/components/GlobalStyle/GlobalStyle";
+import { Toaster } from "@/components/ui/sonner";
+import AppProvider from "@/app/AppProvider";
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
@@ -23,7 +25,8 @@ export default function RootLayout({
     <GlobalStyle>
       <html lang="en">
         <body className={` ${spaceGrotesk.className} antialiased`}>
-          {children}
+          <AppProvider>{children}</AppProvider>
+          <Toaster />
         </body>
       </html>
     </GlobalStyle>

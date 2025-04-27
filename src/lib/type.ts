@@ -8,3 +8,16 @@ export type ServiceType = {
   image: StaticImageData;
   path: string;
 };
+
+export type userType = {
+  id: number;
+  username: string;
+  email: string;
+  avatar: string;
+};
+
+export type tokensType = {
+  accessToken: string;
+  refreshToken: string;
+  accessTokenExpiresIn: number;
+};

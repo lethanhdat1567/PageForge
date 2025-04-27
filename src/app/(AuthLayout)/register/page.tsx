@@ -2,7 +2,8 @@ import classNames from "classnames/bind";
 import styles from "./Register.module.scss";
 import Link from "next/link";
 import LoginWithGoogle from "@/components/LoginWithGoogle/LoginWithGoogle";
-import FormRegister from "@/app/(AuthLayout)/(auth)/register/FormRegister";
+import FormRegister from "@/app/(AuthLayout)/register/FormRegister";
+import LoginWithFacebook from "@/components/LoginWithFacebook/LoginWithGoogle";
 
 const cx = classNames.bind(styles);
 
@@ -17,6 +18,7 @@ function Register() {
             Bạn đã có tài khoản?
           </Link>
           <LoginWithGoogle />
+          <LoginWithFacebook />
         </div>
       </div>
     </div>

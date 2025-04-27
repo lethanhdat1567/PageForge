@@ -2,7 +2,7 @@ import classnames from "classnames/bind";
 import styles from "./Login.module.scss";
 import Link from "next/link";
 import LoginWithGoogle from "@/components/LoginWithGoogle/LoginWithGoogle";
-import FormLogin from "@/app/(AuthLayout)/(auth)/login/formLogin";
+import FormLogin from "@/app/(AuthLayout)/login/formLogin";
 
 const cx = classnames.bind(styles);
 

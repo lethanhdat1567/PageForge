@@ -1,0 +1,20 @@
+.btn-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #383838;
+  padding: 10px;
+  border-radius: 10px;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: ease 0.4s;
+  .arrow-icon {
+    transition: ease 0.4s;
+  }
+  &:hover {
+    border: 1px solid #ccc;
+    .arrow-icon {
+      transform: translateX(4px);
+    }
+  }
+}
