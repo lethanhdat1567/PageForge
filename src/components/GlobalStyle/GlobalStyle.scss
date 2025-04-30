@@ -3,5 +3,9 @@ input {
 }
 
 html {
-  overflow: hidden scroll;
+  overflow: hidden;
+}
+
+html body[data-scroll-locked] {
+  margin-right: 0px !important;
 }

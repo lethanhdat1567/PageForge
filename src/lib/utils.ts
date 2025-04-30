@@ -41,7 +41,6 @@ export const handleErrorApi = ({
       });
     });
   } else {
-    console.log(error);
-    toast.error(error.payload.message ?? "Loi khong xac dinh");
+    toast.error(error.payload?.message ?? "Lỗi hệ thống");
   }
 };

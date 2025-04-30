@@ -1,0 +1,15 @@
+.item {
+  .item-head {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    .item-title {
+      font-size: 12px;
+      font-weight: 500;
+    }
+  }
+  .item-info {
+    font-size: 40px;
+    font-weight: 600;
+  }
+}

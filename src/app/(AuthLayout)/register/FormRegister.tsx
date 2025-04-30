@@ -42,8 +42,6 @@ function FormRegister() {
 
   // 2. Define a submit handler.
   async function onSubmit(values: registerBodyType) {
-    console.log("alo");
-
     try {
       const result = await authApiRequest.register(values);
       await authApiRequest.auth({ data: result.payload as registerResType });
@@ -53,7 +51,6 @@ function FormRegister() {
       handleErrorApi({ error, setError: form.setError });
     }
   }
-  console.log(form.formState.errors); // Kiểm tra lỗi validation
 
   return (
     <Form {...form}>

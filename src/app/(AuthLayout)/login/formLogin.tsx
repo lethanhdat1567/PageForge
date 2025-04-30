@@ -51,6 +51,7 @@ function FormLogin() {
       setUser((result.payload as any).data.account);
       router.push("/admin");
     } catch (error: any) {
+      console.log(error);
       handleErrorApi({ error, setError: form.setError });
     }
   }

@@ -1,0 +1,38 @@
+.wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 10px;
+  border: 0.5px solid transparent;
+  &:hover {
+    background-color: #252424;
+    border: 0.5px solid #3c3b3b;
+  }
+  .avatar {
+    border-radius: 10px;
+  }
+}
+
+.head-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+}
+
+.head-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.label,
+.menu-item {
+  font-size: 16px;
+  font-weight: 500;
+}
+.menu-item {
+  color: #1a1919;
+  font-weight: 400;
+}

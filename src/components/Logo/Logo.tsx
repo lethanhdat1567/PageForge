@@ -6,7 +6,13 @@ import Link from "next/link";
 
 const cx = classNames.bind(styles);
 
-function Logo({ color = "dark" }: { color?: "dark" | "light" }) {
+function Logo({
+  color = "dark",
+  size = "medium",
+}: {
+  color?: "dark" | "light";
+  size?: "small" | "medium";
+}) {
   return (
     <Link href={"/"}>
       <div className={cx("wrap")}>
@@ -15,8 +21,9 @@ function Logo({ color = "dark" }: { color?: "dark" | "light" }) {
           height={36}
           alt="Logo"
           src={color === "dark" ? imgs.Logo : imgs.LogoLight}
+          className={cx("img", { [size]: size })}
         />
-        <h1 className={cx("title")}>PageForge</h1>
+        <h1 className={cx("title", { [size]: size })}>PageForge</h1>
       </div>
     </Link>
   );

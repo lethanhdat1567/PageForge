@@ -1,0 +1,122 @@
+[
+  {
+    "id": 1,
+    "customerName": "Nguyễn Văn A",
+    "phoneNumber": "0901234567",
+    "bookingDate": "2025-04-29",
+    "bookingTime": "18:00",
+    "numOfPeople": 4,
+    "tableType": "VIP",
+    "status": "Confirmed",
+    "notes": "Không có ghi chú",
+    "actions": "Edit | Cancel | Delete"
+  },
+  {
+    "id": 2,
+    "customerName": "Trần Thị B",
+    "phoneNumber": "0912345678",
+    "bookingDate": "2025-04-29",
+    "bookingTime": "19:00",
+    "numOfPeople": 2,
+    "tableType": "Standard",
+    "status": "Cancelled",
+    "notes": "Khách hàng hủy đặt",
+    "actions": "Edit | Cancel | Delete"
+  },
+  {
+    "id": 3,
+    "customerName": "Phan Hoàng C",
+    "phoneNumber": "0923456789",
+    "bookingDate": "2025-04-30",
+    "bookingTime": "20:00",
+    "numOfPeople": 3,
+    "tableType": "Premium",
+    "status": "Confirmed",
+    "notes": "Ghi chú về yêu cầu riêng",
+    "actions": "Edit | Cancel | Delete"
+  },
+  {
+    "id": 4,
+    "customerName": "Lê Minh D",
+    "phoneNumber": "0934567890",
+    "bookingDate": "2025-04-30",
+    "bookingTime": "21:00",
+    "numOfPeople": 5,
+    "tableType": "VIP",
+    "status": "Pending",
+    "notes": "Đang chờ xác nhận",
+    "actions": "Edit | Cancel | Delete"
+  },
+  {
+    "id": 5,
+    "customerName": "Bùi Thị E",
+    "phoneNumber": "0945678901",
+    "bookingDate": "2025-05-01",
+    "bookingTime": "17:30",
+    "numOfPeople": 6,
+    "tableType": "Standard",
+    "status": "Confirmed",
+    "notes": "Không có ghi chú",
+    "actions": "Edit | Cancel | Delete"
+  },
+  {
+    "id": 6,
+    "customerName": "Ngô Minh F",
+    "phoneNumber": "0956789012",
+    "bookingDate": "2025-05-02",
+    "bookingTime": "18:30",
+    "numOfPeople": 2,
+    "tableType": "Premium",
+    "status": "Cancelled",
+    "notes": "Khách hàng không đến",
+    "actions": "Edit | Cancel | Delete"
+  },
+  {
+    "id": 7,
+    "customerName": "Vũ Hoàng G",
+    "phoneNumber": "0967890123",
+    "bookingDate": "2025-05-03",
+    "bookingTime": "19:45",
+    "numOfPeople": 4,
+    "tableType": "VIP",
+    "status": "Confirmed",
+    "notes": "Yêu cầu món ăn đặc biệt",
+    "actions": "Edit | Cancel | Delete"
+  },
+  {
+    "id": 8,
+    "customerName": "Lê Quang H",
+    "phoneNumber": "0978901234",
+    "bookingDate": "2025-05-03",
+    "bookingTime": "20:15",
+    "numOfPeople": 3,
+    "tableType": "Standard",
+    "status": "Pending",
+    "notes": "Đang chờ xác nhận",
+    "actions": "Edit | Cancel | Delete"
+  },
+  {
+    "id": 9,
+    "customerName": "Đặng Thị I",
+    "phoneNumber": "0989012345",
+    "bookingDate": "2025-05-04",
+    "bookingTime": "16:30",
+    "numOfPeople": 2,
+    "tableType": "Premium",
+    "status": "Confirmed",
+    "notes": "Không có ghi chú",
+    "actions": "Edit | Cancel | Delete"
+  },
+  {
+    "id": 10,
+    "customerName": "Phan Đức J",
+    "phoneNumber": "0990123456",
+    "bookingDate": "2025-05-04",
+    "bookingTime": "18:00",
+    "numOfPeople": 8,
+    "tableType": "VIP",
+    "status": "Cancelled",
+    "notes": "Khách hàng hủy đặt",
+    "actions": "Edit | Cancel | Delete"
+  }
+]

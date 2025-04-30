@@ -1,0 +1,29 @@
+.wrap {
+  flex-shrink: 0;
+  width: 240px;
+  height: calc(100vh - var(--private-header-h));
+  background-color: rgb(243, 243, 243);
+  color: rgba(48, 48, 48, 1);
+  padding: 10px;
+}
+
+.list {
+  .item {
+    display: flex;
+    align-items: center;
+    padding: 10px 8px;
+    gap: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    &.active {
+      background-color: #fff;
+    }
+    &:hover {
+      background-color: #ededed;
+    }
+    .label {
+      font-size: 14px;
+      font-weight: 500;
+    }
+  }
+}
