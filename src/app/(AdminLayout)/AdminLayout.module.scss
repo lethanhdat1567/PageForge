@@ -1,11 +1,12 @@
 .wrap {
-  display: flex;
-  align-items: flex-start;
-  font-family: var(--font-poppins), sans-serif !important; /* Ensure the font is applied */
+    display: flex;
+    align-items: flex-start;
+    font-family: var(--font-poppins), sans-serif !important; /* Ensure the font is applied */
+    position: relative;
 }
 .body {
-  background-color: rgb(249, 249, 249);
-  width: 100%;
-  height: calc(100vh - var(--private-header-h));
-  overflow: hidden scroll;
+    background-color: rgb(249, 249, 249);
+    width: 100%;
+    height: calc(100vh - var(--private-header-h));
+    overflow: hidden scroll;
 }

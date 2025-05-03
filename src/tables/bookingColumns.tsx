@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { bookingResType } from '@/schemaValidations/table.schema';
 import { ColumnDef } from '@tanstack/react-table';
@@ -6,9 +8,16 @@ import { ColumnHeader } from '@/components/DataTable/components/ColumnHeader/Col
 import FormInputTable from '@/components/DataTable/components/FormInputTable/FormInputTable';
 import StatusTable from '@/components/DataTable/components/StatusTable/StatusTable';
 import RowAction from '@/components/DataTable/components/RowAction/RowAction';
-import { Notebook } from 'lucide-react';
+import NoteTable from '@/components/DataTable/components/NoteTable/NoteTable';
+import { DragHandle } from '@/components/DataTable/components/Drag/Drag';
+import BranchSelect from '@/components/DataTable/components/BranchSelect/BranchSelect';
 
 export const bookingColumns: ColumnDef<bookingResType>[] = [
+    {
+        id: 'drag',
+        header: () => null,
+        cell: ({ row }) => <DragHandle id={row.original.id} />,
+    },
     {
         id: 'select',
         header: ({ table }) => (
@@ -35,19 +44,28 @@ export const bookingColumns: ColumnDef<bookingResType>[] = [
     },
     {
         accessorKey: 'phoneNumber',
-        header: ({ column }) => <ColumnHeader column={column} title="Số điện thoại" />,
+        header: 'Số điện thoại',
+        cell: ({ row }) => <FormInputTable id={row.original.id} value={row.original.phoneNumber} />,
     },
     {
         accessorKey: 'bookingDate',
-        header: 'Ngày đặt',
+        header: ({ column }) => <ColumnHeader column={column} title="Ngày đặt" />,
+        cell: ({ row }) => <FormInputTable id={row.original.id} value={row.original.bookingDate} />,
     },
     {
         accessorKey: 'bookingTime',
-        header: 'Thời gian',
+        header: ({ column }) => <ColumnHeader column={column} title="Thời gian" />,
+        cell: ({ row }) => <FormInputTable id={row.original.id} value={row.original.bookingTime} />,
     },
     {
         accessorKey: 'members',
-        header: 'Số lượng',
+        header: ({ column }) => <ColumnHeader column={column} title="Số lượng" />,
+        cell: ({ row }) => <FormInputTable id={row.original.id} value={row.original.members} />,
+    },
+    {
+        accessorKey: 'branch',
+        header: 'Chi nhánh',
+        cell: ({ row }) => <BranchSelect />,
     },
     {
         accessorKey: 'status',
@@ -56,13 +74,13 @@ export const bookingColumns: ColumnDef<bookingResType>[] = [
     },
     {
         accessorKey: 'userNote',
-        header: 'Ghi chú khách',
-        cell: ({ row }) => <Notebook />,
+        header: 'Khách',
+        cell: ({ row }) => <NoteTable noteValue={row.original.userNote} />,
     },
     {
         accessorKey: 'adminNote',
-        header: 'Ghi chú admin',
-        cell: ({ row }) => <Notebook />,
+        header: 'Admin',
+        cell: ({ row }) => <NoteTable noteValue={row.original.adminNote} />,
     },
     {
         id: 'actions',

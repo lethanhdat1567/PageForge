@@ -1,0 +1,12 @@
+.exit-btn {
+    cursor: pointer;
+    background-color: #ededed;
+    padding: 4px;
+    border-radius: 10px;
+    color: #777575;
+    transition: ease 0.4s;
+    &:hover {
+        background-color: #dcdcdc;
+        color: #2d2c2c;
+    }
+}

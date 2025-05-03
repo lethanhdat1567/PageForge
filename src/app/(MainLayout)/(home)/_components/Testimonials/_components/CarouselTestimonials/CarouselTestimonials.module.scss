@@ -1,75 +1,74 @@
 .footer-wrap {
-  position: absolute;
-  top: 90%;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 500px;
-  .btn-prev,
-  .btn-next {
-    background-color: transparent;
-    color: #989595;
-    border: none;
-    cursor: pointer;
-    & svg {
-      width: 40px;
-      height: 40px;
-    }
-    &:hover {
-      color: #fff;
-    }
-    &.disable {
-      color: #2f2f2f;
-    }
-  }
-  .pagination {
+    position: absolute;
+    top: 90%;
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
     align-items: center;
-    gap: 20px;
-  }
+    justify-content: center;
+    width: 500px;
+    .btn-prev,
+    .btn-next {
+        background-color: transparent;
+        color: #989595;
+        border: none;
+        cursor: pointer;
+        & svg {
+            width: 40px;
+            height: 40px;
+        }
+        &:hover {
+            color: #fff;
+        }
+        &.disable {
+            color: #2f2f2f;
+        }
+    }
+    .pagination {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
 }
 .item-title {
-  font-size: 20px;
-  color: var(--primary-color);
+    font-size: 20px;
+    color: var(--primary-color);
 }
 .item-content {
-  position: relative;
-  padding: 40px;
-  border-radius: 32px;
-  border: 1px solid #b8ff4d;
-  background-color: #1c1c24;
-  color: white;
-  margin-bottom: 30px;
-
-  .item-feedback {
-    font-size: 0.875rem; // text-sm tương đương với 0.875rem
-    line-height: 1.75rem; // leading-relaxed tương đương với 1.75rem
-  }
-
-  .arrow {
-    position: absolute;
-    bottom: -15px;
-    left: 10%;
-    width: 30px;
-    height: 30px;
+    position: relative;
+    border-radius: 32px;
+    border: 1px solid #b8ff4d;
     background-color: #1c1c24;
-    border-left: 1px solid #b8ff4d;
-    border-bottom: 1px solid #b8ff4d;
-    transform: rotate(-45deg);
-  }
-  .item-feedback {
-    font-size: 16px;
-    color: var(--white-color);
-  }
+    color: white;
+    margin-bottom: 30px;
+
+    .item-feedback {
+        font-size: 0.875rem; // text-sm tương đương với 0.875rem
+        line-height: 1.75rem; // leading-relaxed tương đương với 1.75rem
+    }
+
+    .arrow {
+        position: absolute;
+        bottom: -15px;
+        left: 10%;
+        width: 30px;
+        height: 30px;
+        background-color: #1c1c24;
+        border-left: 1px solid #b8ff4d;
+        border-bottom: 1px solid #b8ff4d;
+        transform: rotate(-45deg);
+    }
+    .item-feedback {
+        font-size: 16px;
+        color: var(--white-color);
+    }
 }
 .item-info {
-  margin-left: 50px;
+    margin-left: 50px;
 }
 .pagina-btn {
-  color: #fff;
-  &.active {
-    color: var(--primary-color);
-  }
+    color: #fff;
+    &.active {
+        color: var(--primary-color);
+    }
 }

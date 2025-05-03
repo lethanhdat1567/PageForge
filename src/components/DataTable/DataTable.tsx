@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
 import * as React from 'react';
@@ -15,28 +16,40 @@ import {
     useReactTable,
     VisibilityState,
 } from '@tanstack/react-table';
+import { restrictToVerticalAxis } from '@dnd-kit/modifiers';
 
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { DataTablePagination } from '@/components/DataTablePagination/DataTablePagination';
+import HeaderTable from '@/components/DataTable/components/HeaderTable/HeaderTable';
 import SearchTable from '@/components/DataTable/components/SearchTable/SearchTable';
-import { ColumnToggle } from '@/components/DataTable/components/ColumnToggle/ColumnToggle';
+import { Button } from '@/components/ui/button';
+import { Trash } from 'lucide-react';
+import { DndContext, closestCenter, DragEndEvent, useSensors, useSensor, MouseSensor, TouchSensor, KeyboardSensor } from '@dnd-kit/core';
+import { arrayMove, SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
+import { DraggableRow } from '@/components/DataTable/components/Drag/Drag';
 
 interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[];
     data: TData[];
+    showFilter?: boolean;
+    showFooter?: boolean;
 }
 
 const cx = classNames.bind(styles);
 
-function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData, TValue>) {
+function DataTable<TData, TValue>({ columns, data, showFilter = true, showFooter = true }: DataTableProps<TData, TValue>) {
     // ----------------State----------------
+    const [tableData, setTableData] = React.useState(data);
     const [sorting, setSorting] = React.useState<SortingState>([]);
     const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
     const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
     const [rowSelection, setRowSelection] = React.useState({});
+    const sortableId = React.useId();
+    const sensors = useSensors(useSensor(MouseSensor, {}), useSensor(TouchSensor, {}), useSensor(KeyboardSensor, {}));
+
     //  ----------------Table state----------------
     const table = useReactTable({
-        data,
+        data: tableData,
         columns,
         getCoreRowModel: getCoreRowModel(),
         getPaginationRowModel: getPaginationRowModel(),
@@ -54,48 +67,78 @@ function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData, TValu
         },
     });
 
+    // Drag handler
+    function handleDragEnd(event: DragEndEvent) {
+        const { active, over } = event;
+
+        if (!active || !over || active.id === over.id) return;
+
+        setTableData((prevData) => {
+            const oldIndex = prevData.findIndex((item: any) => item.id === active.id);
+            const newIndex = prevData.findIndex((item: any) => item.id === over.id);
+
+            if (oldIndex === -1 || newIndex === -1) return prevData;
+
+            return arrayMove(prevData, oldIndex, newIndex);
+        });
+    }
+
     return (
-        <div>
-            <SearchTable table={table} />
-            <ColumnToggle table={table} />
-            <div className="rounded-md border">
-                <Table>
-                    <TableHeader>
-                        {table.getHeaderGroups().map((headerGroup) => (
-                            <TableRow key={headerGroup.id}>
-                                {headerGroup.headers.map((header) => {
-                                    return (
+        <DndContext
+            collisionDetection={closestCenter}
+            modifiers={[restrictToVerticalAxis]}
+            onDragEnd={handleDragEnd}
+            sensors={sensors}
+            id={sortableId}
+        >
+            <div>
+                {showFilter && <HeaderTable table={table} />}
+                <div className={cx('header-wrap')}>
+                    <Button variant={'destructive'}>
+                        <Trash />
+                    </Button>
+                    <SearchTable table={table} />
+                </div>
+                <div className="rounded-md border">
+                    <Table>
+                        <TableHeader>
+                            {table.getHeaderGroups().map((headerGroup) => (
+                                <TableRow key={headerGroup.id}>
+                                    {headerGroup.headers.map((header) => (
                                         <TableHead key={header.id}>
                                             {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
                                         </TableHead>
-                                    );
-                                })}
-                            </TableRow>
-                        ))}
-                    </TableHeader>
-                    <TableBody>
-                        {table.getRowModel().rows?.length ? (
-                            table.getRowModel().rows.map((row) => (
-                                <TableRow key={row.id} data-state={row.getIsSelected() && 'selected'}>
-                                    {row.getVisibleCells().map((cell) => (
-                                        <TableCell key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</TableCell>
                                     ))}
                                 </TableRow>
-                            ))
-                        ) : (
-                            <TableRow>
-                                <TableCell colSpan={columns.length} className="h-24 text-center">
-                                    No results.
-                                </TableCell>
-                            </TableRow>
-                        )}
-                    </TableBody>
-                </Table>
+                            ))}
+                        </TableHeader>
+                        <TableBody>
+                            {table.getRowModel().rows?.length ? (
+                                <SortableContext
+                                    items={table.getRowModel().rows.map((row) => (row.original as any).id)}
+                                    strategy={verticalListSortingStrategy}
+                                >
+                                    {table.getRowModel().rows.map((row) => (
+                                        <DraggableRow key={row.id} row={row} />
+                                    ))}
+                                </SortableContext>
+                            ) : (
+                                <TableRow>
+                                    <TableCell colSpan={columns.length} className="h-24 text-center">
+                                        No results.
+                                    </TableCell>
+                                </TableRow>
+                            )}
+                        </TableBody>
+                    </Table>
+                </div>
+                {showFooter && (
+                    <div className={cx('pagination')}>
+                        <DataTablePagination table={table} />
+                    </div>
+                )}
             </div>
-            <div className={cx('pagination')}>
-                <DataTablePagination table={table} />
-            </div>
-        </div>
+        </DndContext>
     );
 }
 

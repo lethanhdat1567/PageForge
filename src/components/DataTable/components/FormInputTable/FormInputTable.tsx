@@ -8,7 +8,6 @@ function FormInputTable({ id, value }: { id: number; value: any }) {
         <form
             onSubmit={(e) => {
                 e.preventDefault();
-                console.log('alo');
 
                 toast.promise(new Promise((resolve) => setTimeout(resolve, 1000)), {
                     loading: `Saving`,
@@ -21,7 +20,7 @@ function FormInputTable({ id, value }: { id: number; value: any }) {
                 Target
             </Label>
             <Input
-                className="h-8 w-40 border-transparent bg-transparent text-right shadow-none hover:bg-input/30 focus-visible:border focus-visible:bg-background"
+                className="h-8 w-full min-w-[120px] border-transparent bg-transparent text-center shadow-none hover:bg-input/30 focus-visible:border focus-visible:bg-background"
                 defaultValue={value}
                 id={`${id}-target`}
             />

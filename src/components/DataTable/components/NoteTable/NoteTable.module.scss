@@ -1,0 +1,16 @@
+.dialog-content {
+    cursor: pointer;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.text-area {
+    height: 200px;
+    color: #000;
+}
+.note-title {
+    cursor: pointer;
+    text-decoration: underline;
+    font-weight: 500;
+}

@@ -1,0 +1,8 @@
+.menu-item {
+    color: #1a1919;
+    font-size: 16px;
+    font-weight: 400;
+    &.logout {
+        color: red;
+    }
+}

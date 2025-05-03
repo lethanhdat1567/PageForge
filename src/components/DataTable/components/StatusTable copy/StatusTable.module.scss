@@ -1,0 +1,36 @@
+.badge {
+    cursor: pointer;
+    padding: 4px;
+    min-width: 90px;
+    &.confirmed {
+        background-color: #9effbb;
+        color: #004e42;
+    }
+    &.pending {
+        background-color: #fad59a;
+        color: #a86523;
+    }
+    &.cancelled {
+        background-color: rgb(255 157 157);
+        color: #a62c2c;
+    }
+}
+.menu-item {
+    font-size: 12px;
+    font-weight: 600;
+    &:hover {
+        opacity: 0.7;
+    }
+    &.confirmed {
+        background-color: #9effbb;
+        color: #004e42;
+    }
+    &.pending {
+        background-color: #fad59a;
+        color: #a86523;
+    }
+    &.cancelled {
+        background-color: rgb(255 157 157);
+        color: #a62c2c;
+    }
+}
