@@ -41,7 +41,7 @@ function HeaderUser() {
                     </div>
                     <DropdownMenuSeparator />
 
-                    <Link href={'/admin/profile'}>
+                    <Link href={'/profile'}>
                         <DropdownMenuItem className={cx('menu-item')}>Trang cá nhân</DropdownMenuItem>
                     </Link>
 

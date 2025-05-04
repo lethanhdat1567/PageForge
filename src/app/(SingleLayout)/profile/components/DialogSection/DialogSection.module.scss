@@ -1,0 +1,13 @@
+.dialog-form-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.avatar-dialog {
+    width: 200px;
+    height: 200px;
+    margin: 20px auto;
+}
+.dialog-avatar-btn {
+    width: 100%;
+}

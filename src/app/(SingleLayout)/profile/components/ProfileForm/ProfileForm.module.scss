@@ -1,0 +1,42 @@
+.title {
+    font-size: 20px;
+    font-weight: 500;
+}
+.desc {
+    font-size: 18px;
+    margin: 10px 0px 20px 0px;
+}
+.content {
+    background-color: #fff;
+    border-radius: 10px;
+    .item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px;
+        border-bottom: 1px solid #ccc;
+        cursor: pointer;
+        transition: ease 0.2s;
+        &.avatar {
+            border: none;
+        }
+        &:hover {
+            background-color: #0000000d;
+        }
+        .item-info {
+            .label {
+                font-size: 16px;
+                font-weight: 600;
+                margin-bottom: 4px;
+                display: inline-block;
+            }
+            .items-info-desc {
+                font-size: 16px;
+            }
+            .avatar {
+                width: 50px;
+                height: 50px;
+            }
+        }
+    }
+}
