@@ -1,0 +1,16 @@
+.page-select {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    padding: 10px 16px;
+    border-radius: 10px;
+    transition: ease 0.2s;
+    &:hover {
+        background-color: #e8e8e8;
+    }
+    .page-select-title {
+        font-size: 16px;
+        font-weight: 500;
+    }
+}

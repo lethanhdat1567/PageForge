@@ -16,7 +16,7 @@ export const bookingColumns: ColumnDef<bookingResType>[] = [
     {
         id: 'drag',
         header: () => null,
-        cell: ({ row }) => <DragHandle id={row.original.id} />,
+        cell: ({ row }) => <DragHandle id={row.original.id as number} />,
     },
     {
         id: 'select',
@@ -40,27 +40,27 @@ export const bookingColumns: ColumnDef<bookingResType>[] = [
     {
         accessorKey: 'username',
         header: ({ column }) => <ColumnHeader column={column} title="Tên khách hàng" />,
-        cell: ({ row }) => <FormInputTable id={row.original.id} value={row.original.username} />,
+        cell: ({ row }) => <FormInputTable id={row.original.id as number} value={row.original.username} />,
     },
     {
         accessorKey: 'phoneNumber',
         header: 'Số điện thoại',
-        cell: ({ row }) => <FormInputTable id={row.original.id} value={row.original.phoneNumber} />,
+        cell: ({ row }) => <FormInputTable id={row.original.id as number} value={row.original.phoneNumber} />,
     },
     {
         accessorKey: 'bookingDate',
         header: ({ column }) => <ColumnHeader column={column} title="Ngày đặt" />,
-        cell: ({ row }) => <FormInputTable id={row.original.id} value={row.original.bookingDate} />,
+        cell: ({ row }) => <FormInputTable id={row.original.id as number} value={row.original.bookingDate} />,
     },
     {
         accessorKey: 'bookingTime',
         header: ({ column }) => <ColumnHeader column={column} title="Thời gian" />,
-        cell: ({ row }) => <FormInputTable id={row.original.id} value={row.original.bookingTime} />,
+        cell: ({ row }) => <FormInputTable id={row.original.id as number} value={row.original.bookingTime} />,
     },
     {
         accessorKey: 'members',
         header: ({ column }) => <ColumnHeader column={column} title="Số lượng" />,
-        cell: ({ row }) => <FormInputTable id={row.original.id} value={row.original.members} />,
+        cell: ({ row }) => <FormInputTable id={row.original.id as number} value={row.original.members} />,
     },
     {
         accessorKey: 'branch',
@@ -85,7 +85,7 @@ export const bookingColumns: ColumnDef<bookingResType>[] = [
     {
         id: 'actions',
         cell: ({ row }) => {
-            return <RowAction id={row.original.id} />;
+            return <RowAction id={row.original.id as number} />;
         },
     },
 ];

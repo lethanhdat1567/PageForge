@@ -8,17 +8,17 @@ import { ChartContainer } from '@/components/ui/chart';
 import CustomTooltip from '@/app/(AdminLayout)/admin/(dashboard)/components/Chart/CustomTooltip';
 
 const chartData = [
-    { time: '10:00', reserved: 5 },
-    { time: '11:00', reserved: 7 },
-    { time: '12:00', reserved: 10 },
-    { time: '13:00', reserved: 6 },
-    { time: '14:00', reserved: 3 },
+    { time: '10:00', user: 1 },
+    { time: '11:00', user: 7 },
+    { time: '12:00', user: 10 },
+    { time: '13:00', user: 6 },
+    { time: '14:00', user: 3 },
 ];
 
 const chartConfig = {
-    reserved: {
-        label: 'Đã đặt',
-        color: '#3E8FE4', // đỏ
+    user: {
+        label: 'Người dùng mới',
+        color: '#3E8FE4',
     },
 };
 
@@ -26,8 +26,8 @@ function Chart() {
     return (
         <Card>
             <CardHeader>
-                <CardTitle>Biểu đồ Bàn Đã Đặt</CardTitle>
-                <CardDescription>Thống kê bàn đã đặt theo giờ trong ngày</CardDescription>
+                <CardTitle>Biểu đồ người dùng mới</CardTitle>
+                <CardDescription>Thống kê người dùng mới theo giờ trong ngày</CardDescription>
             </CardHeader>
             <CardContent>
                 <ChartContainer config={chartConfig} className="h-60 w-full">
@@ -36,12 +36,12 @@ function Chart() {
                             <CartesianGrid vertical={false} />
                             <XAxis dataKey="time" tickLine={false} axisLine={false} tickMargin={8} />
                             <YAxis />
-                            <Tooltip content={<CustomTooltip title="Bàn đã đặt" />} />
+                            <Tooltip content={<CustomTooltip title="người dùng mới" />} />
                             <Area
-                                dataKey="reserved"
+                                dataKey="user"
                                 type="monotone"
-                                stroke={chartConfig.reserved.color}
-                                fill={chartConfig.reserved.color}
+                                stroke={chartConfig.user.color}
+                                fill={chartConfig.user.color}
                                 fillOpacity={0.4}
                             />
                         </AreaChart>

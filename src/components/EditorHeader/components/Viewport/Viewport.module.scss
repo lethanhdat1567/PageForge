@@ -1,0 +1,26 @@
+.viewport {
+    display: flex;
+    align-items: center;
+    background-color: rgba(241, 241, 241, 1);
+    padding: 4px;
+    border-radius: 6px;
+    gap: 6px;
+    .viewport-icon {
+        padding: 8px;
+        border-radius: 6px;
+        background-color: transparent;
+        cursor: pointer;
+        &.active {
+            background-color: #fff;
+            box-shadow: 0rem 0.3125rem 0.3125rem -0.15625rem rgba(0, 0, 0, 0.03), 0rem 0.1875rem 0.1875rem -0.09375rem rgba(0, 0, 0, 0.02),
+                0rem 0.125rem 0.125rem -0.0625rem rgba(0, 0, 0, 0.02), 0rem 0.0625rem 0.0625rem -0.03125rem rgba(0, 0, 0, 0.03),
+                0rem 0.03125rem 0.03125rem 0rem rgba(0, 0, 0, 0.04), 0rem 0rem 0rem 0.0625rem rgba(0, 0, 0, 0.06);
+        }
+        &.active:hover {
+            background-color: #fff;
+        }
+        &:hover {
+            background-color: #e8e8e8;
+        }
+    }
+}

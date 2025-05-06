@@ -11,20 +11,24 @@ import TableDialog from '@/components/DataTable/components/AddBooking/TableDialo
 const cx = classNames.bind(styles);
 
 function AddBooking() {
-    const pathname = usePathname(); // Lấy path hiện tại bằng usePathname từ next/navigation
+    const pathname = usePathname();
 
-    const redirectPath = ['/admin/reservations'];
+    if (pathname === '/admin/reservations') {
+        return (
+            <Link href="/admin/reservations/create">
+                <Button variant="outline" size="sm" className="ml-auto hidden h-8 lg:flex">
+                    <Plus />
+                    Thêm đặt bàn
+                </Button>
+            </Link>
+        );
+    }
 
-    return redirectPath.includes(pathname) ? (
-        <Link href={`${pathname}/create`}>
-            <Button variant="outline" size="sm" className="ml-auto hidden h-8 lg:flex">
-                <Plus />
-                Thêm bàn
-            </Button>
-        </Link>
-    ) : (
-        <TableDialog />
-    );
+    if (pathname === '/admin/tables') {
+        return <TableDialog />;
+    }
+
+    return null; // ẩn với path khác
 }
 
 export default AddBooking;

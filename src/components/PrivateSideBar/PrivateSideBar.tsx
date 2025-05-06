@@ -2,7 +2,7 @@
 
 import classNames from 'classnames/bind';
 import styles from './PrivateSideBar.module.scss';
-import { adminSidebar } from '@/lib/data';
+import { adminPanelSidebar, adminSidebar } from '@/lib/data';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import CloseSideBar from '@/components/PrivateSideBar/CloseSideBar';
@@ -15,6 +15,8 @@ function PrivateSideBar() {
     const [activeSidebar, setActiveSidebar] = useState(true);
     const pathname = usePathname();
 
+    const currentSidebar = pathname.includes('/admin') ? adminSidebar : pathname.includes('/panel') ? adminPanelSidebar : [];
+
     return (
         <>
             <button className={cx('show-sidebar-btn', { active: !activeSidebar })} onClick={() => setActiveSidebar(true)}>
@@ -23,7 +25,7 @@ function PrivateSideBar() {
             <div className={cx('wrap', { active: activeSidebar })}>
                 <CloseSideBar onClick={() => setActiveSidebar(false)} />
                 <ul className={cx('list')}>
-                    {adminSidebar.map((item, index) => (
+                    {currentSidebar.map((item, index) => (
                         <Link href={item.path} key={index}>
                             <li className={cx('item', { active: pathname === item.path })}>
                                 <item.icon size={18} />

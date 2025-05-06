@@ -4,14 +4,8 @@ import { EllipsisVertical, Eye } from 'lucide-react';
 import Image from 'next/image';
 import { imgs } from '../../../../../public/images';
 import { Button } from '@/components/ui/button';
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuLabel,
-    DropdownMenuSeparator,
-    DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
+import Link from 'next/link';
 
 const cx = classNames.bind(styles);
 
@@ -41,7 +35,9 @@ function Store() {
                                 <p className={cx('main-save-desc')}>Lưu lần cuối: Apr 25 at 4:06 pm GMT+2</p>
                             </div>
                         </div>
-                        <Button variant={'default'}>Tùy chỉnh</Button>
+                        <Link href={'/admin/editor'}>
+                            <Button variant={'default'}>Tùy chỉnh</Button>
+                        </Link>
                     </div>
                 </div>
                 {/* Sub section */}
@@ -65,7 +61,7 @@ function Store() {
                             </div>
                             <div className={cx('utils')}>
                                 <DropdownMenu>
-                                    <DropdownMenuTrigger>
+                                    <DropdownMenuTrigger asChild>
                                         <Button variant={'outline'}>
                                             <EllipsisVertical />
                                         </Button>
@@ -94,7 +90,7 @@ function Store() {
                             </div>
                             <div className={cx('utils')}>
                                 <DropdownMenu>
-                                    <DropdownMenuTrigger>
+                                    <DropdownMenuTrigger asChild>
                                         <Button variant={'outline'}>
                                             <EllipsisVertical />
                                         </Button>
@@ -123,7 +119,7 @@ function Store() {
                             </div>
                             <div className={cx('utils')}>
                                 <DropdownMenu>
-                                    <DropdownMenuTrigger>
+                                    <DropdownMenuTrigger asChild>
                                         <Button variant={'outline'}>
                                             <EllipsisVertical />
                                         </Button>
@@ -152,7 +148,7 @@ function Store() {
                             </div>
                             <div className={cx('utils')}>
                                 <DropdownMenu>
-                                    <DropdownMenuTrigger>
+                                    <DropdownMenuTrigger asChild>
                                         <Button variant={'outline'}>
                                             <EllipsisVertical />
                                         </Button>

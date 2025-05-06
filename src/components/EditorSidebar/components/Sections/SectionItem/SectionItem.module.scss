@@ -1,0 +1,48 @@
+.wrap {
+    padding: 10px;
+}
+.title {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+.item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4px;
+    padding: 6px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: ease 0.2s;
+    &:hover {
+        background-color: #eeeeee;
+        .utils {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+    .item-info {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        .item-title {
+            font-weight: 400;
+            font-size: 16px;
+        }
+    }
+    .utils {
+        display: flex;
+        align-items: center;
+        opacity: 0;
+        visibility: hidden;
+        transition: ease 0.2s;
+        .utils-icon {
+            padding: 6px;
+            border-radius: 6px;
+            &:hover {
+                background-color: #ccc;
+            }
+        }
+    }
+}
