@@ -7,18 +7,10 @@ import { navbarData } from '@/lib/data';
 import Link from 'next/link';
 import SignInButton from '@/components/SignInButton/SignInButton';
 import SliceSession from '@/components/SliceSession/SliceSession';
-import { useEffect, useState } from 'react';
-import LogoutButton from '@/components/LogoutButton/LogoutButton';
 
 const cx = classNames.bind(styles);
 
 function Header() {
-    const [token, setToken] = useState();
-
-    useEffect(() => {
-        setToken(JSON.parse(localStorage.getItem('tokens') as string));
-    }, []);
-
     return (
         <header className={cx('wrap')}>
             <Logo />
@@ -29,13 +21,9 @@ function Header() {
                     </Link>
                 ))}
             </nav>
-            {token ? (
-                <LogoutButton />
-            ) : (
-                <Link href={'/register'}>
-                    <SignInButton />
-                </Link>
-            )}
+            <Link href={'/register'}>
+                <SignInButton />
+            </Link>
             <SliceSession />
         </header>
     );

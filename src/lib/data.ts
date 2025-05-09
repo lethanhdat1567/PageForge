@@ -5,6 +5,7 @@ import { tableResType } from '@/schemaValidations/table.schema';
 import { branchResType } from '@/schemaValidations/branch.schema';
 import { UserResType } from '@/schemaValidations/user.schema';
 import { BookingType } from '@/lib/type';
+import { templateResType } from '@/schemaValidations/templates.schema';
 
 export const navbarData = [
     {
@@ -386,5 +387,87 @@ export const mockBookings: BookingType[] = [
         bookingDate: new Date('2024-04-07T17:00:00'), // Ngày và giờ đặt bàn
         createdAt: new Date('2024-04-02T09:30:00'), // Thời gian tạo booking
         updatedAt: new Date('2024-04-02T10:00:00'), // Thời gian cập nhật booking
+    },
+];
+export const mockTemplates: templateResType[] = [
+    {
+        id: 1,
+        name: 'Cozy Café',
+        description: 'Perfect for small, cozy coffee shops and breakfast spots.',
+        main_thumbnail: 'https://randomuser.me/api/portraits/men/10.jpg',
+        sub_thumbnail: 'https://randomuser.me/api/portraits/thumb/men/10.jpg',
+        status: 'active',
+    },
+    {
+        id: 2,
+        name: 'Modern Grill',
+        description: 'Ideal for modern BBQ and steak restaurants.',
+        main_thumbnail: 'https://randomuser.me/api/portraits/women/22.jpg',
+        sub_thumbnail: 'https://randomuser.me/api/portraits/thumb/women/22.jpg',
+        status: 'inactive',
+    },
+    {
+        id: 3,
+        name: 'Sushi Delight',
+        description: 'Fresh and clean design for sushi and Japanese cuisine.',
+        main_thumbnail: 'https://randomuser.me/api/portraits/men/33.jpg',
+        sub_thumbnail: 'https://randomuser.me/api/portraits/thumb/men/33.jpg',
+        status: 'active',
+    },
+    {
+        id: 4,
+        name: 'Vegan Vibes',
+        description: 'Eco-friendly, clean layout perfect for plant-based restaurants.',
+        main_thumbnail: 'https://randomuser.me/api/portraits/women/44.jpg',
+        sub_thumbnail: 'https://randomuser.me/api/portraits/thumb/women/44.jpg',
+        status: 'active',
+    },
+    {
+        id: 5,
+        name: 'Classic Bistro',
+        description: 'Traditional design for European-style bistros and brasseries.',
+        main_thumbnail: 'https://randomuser.me/api/portraits/men/55.jpg',
+        sub_thumbnail: 'https://randomuser.me/api/portraits/thumb/men/55.jpg',
+        status: 'inactive',
+    },
+    {
+        id: 6,
+        name: 'Seafood Heaven',
+        description: 'A great pick for seafood restaurants near beaches or harbors.',
+        main_thumbnail: 'https://randomuser.me/api/portraits/women/66.jpg',
+        sub_thumbnail: 'https://randomuser.me/api/portraits/thumb/women/66.jpg',
+        status: 'active',
+    },
+    {
+        id: 7,
+        name: 'Street Food Spot',
+        description: 'Energetic and colorful theme for street food vendors and food trucks.',
+        main_thumbnail: 'https://randomuser.me/api/portraits/men/77.jpg',
+        sub_thumbnail: 'https://randomuser.me/api/portraits/thumb/men/77.jpg',
+        status: 'active',
+    },
+    {
+        id: 8,
+        name: 'Pizza Place',
+        description: 'Modern yet cozy design for pizza parlors and Italian eateries.',
+        main_thumbnail: 'https://randomuser.me/api/portraits/women/88.jpg',
+        sub_thumbnail: 'https://randomuser.me/api/portraits/thumb/women/88.jpg',
+        status: 'inactive',
+    },
+    {
+        id: 9,
+        name: 'Tropical Bar',
+        description: 'Vibrant and beachy theme for tropical drink bars and beach clubs.',
+        main_thumbnail: 'https://randomuser.me/api/portraits/men/99.jpg',
+        sub_thumbnail: 'https://randomuser.me/api/portraits/thumb/men/99.jpg',
+        status: 'active',
+    },
+    {
+        id: 10,
+        name: 'Minimal Dine',
+        description: 'A clean, minimalist layout for upscale restaurants.',
+        main_thumbnail: 'https://randomuser.me/api/portraits/women/11.jpg',
+        sub_thumbnail: 'https://randomuser.me/api/portraits/thumb/women/11.jpg',
+        status: 'active',
     },
 ];

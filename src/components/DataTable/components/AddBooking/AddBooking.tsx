@@ -17,7 +17,7 @@ function AddBooking() {
         return (
             <Link href="/admin/reservations/create">
                 <Button variant="outline" size="sm" className="ml-auto hidden h-8 lg:flex">
-                    <Plus />
+                    <Plus className="mr-2 h-4 w-4" />
                     Thêm đặt bàn
                 </Button>
             </Link>
@@ -28,7 +28,18 @@ function AddBooking() {
         return <TableDialog />;
     }
 
-    return null; // ẩn với path khác
+    if (pathname === '/panel/templates') {
+        return (
+            <Link href="/panel/templates/create">
+                <Button variant="outline" size="sm" className="ml-auto hidden h-8 lg:flex">
+                    <Plus className="mr-2 h-4 w-4" />
+                    Tạo template
+                </Button>
+            </Link>
+        );
+    }
+
+    return null;
 }
 
 export default AddBooking;

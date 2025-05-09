@@ -1,0 +1,12 @@
+.wrap {
+    .head {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 30px;
+    }
+    .title {
+        font-size: 20px;
+        font-weight: 600;
+    }
+}

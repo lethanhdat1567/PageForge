@@ -20,6 +20,11 @@ const tabMap: Record<string, TabItem[]> = {
         { value: 'confirmed', label: 'Đang sử dụng' },
         { value: 'pending', label: 'Đang bảo trì' },
     ],
+    '/panel/templates': [
+        { value: 'all', label: 'Tất cả' },
+        { value: 'public', label: 'Công khai' },
+        { value: 'private', label: 'Không công khai' },
+    ],
 };
 
 type TabsListProps = {

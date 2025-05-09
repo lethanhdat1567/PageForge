@@ -3,12 +3,14 @@
     padding: 4px;
     min-width: 90px;
     &.confirmed,
-    &.available {
+    &.available,
+    &.active {
         background-color: #9effbb;
         color: #004e42;
     }
     &.pending,
-    &.is_use {
+    &.is_use,
+    &.inactive {
         background-color: #fad59a;
         color: #a86523;
     }
@@ -24,11 +26,13 @@
     &:hover {
         opacity: 0.7;
     }
-    &.confirmed {
+    &.confirmed,
+    &.active {
         background-color: #9effbb;
         color: #004e42;
     }
-    &.pending {
+    &.pending,
+    &.inactive {
         background-color: #fad59a;
         color: #a86523;
     }
