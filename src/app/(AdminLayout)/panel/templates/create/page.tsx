@@ -1,7 +1,8 @@
 import classNames from 'classnames/bind';
 import styles from './FormTemplate.module.scss';
 import BackCreateBtn from '@/components/BackCreateBtn/BackCreateBtn';
-import TemplateForm from '@/app/(AdminLayout)/panel/templates/create/components/TemplateForm/TemplateForm';
+import FormSection from '@/components/FormSection/FormSection';
+import TemplateForm from '@/app/(AdminLayout)/panel/templates/_components/TemplateForm/TemplateForm';
 
 const cx = classNames.bind(styles);
 
@@ -12,9 +13,9 @@ function CreateTemplate() {
                 <BackCreateBtn />
                 <h1 className={cx('title')}>Thêm template</h1>
             </div>
-            <div className={cx('form')}>
+            <FormSection>
                 <TemplateForm />
-            </div>
+            </FormSection>
         </div>
     );
 }

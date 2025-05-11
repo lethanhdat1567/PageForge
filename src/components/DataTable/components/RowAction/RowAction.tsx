@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
 import { MoreHorizontal } from 'lucide-react';
@@ -5,7 +6,7 @@ import { MoreHorizontal } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 
-function RowAction({ id }: { id: number }) {
+function RowAction({ id }: { id: any }) {
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -16,6 +17,7 @@ function RowAction({ id }: { id: number }) {
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
                 <DropdownMenuLabel>Actions</DropdownMenuLabel>
+                <DropdownMenuItem variant="default">Cập nhật</DropdownMenuItem>
                 <DropdownMenuItem variant="destructive">Xóa</DropdownMenuItem>
             </DropdownMenuContent>
         </DropdownMenu>

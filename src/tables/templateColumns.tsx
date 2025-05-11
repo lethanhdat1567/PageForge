@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
 import React from 'react';
@@ -11,6 +12,7 @@ import { DragHandle } from '@/components/DataTable/components/Drag/Drag';
 import Image from 'next/image';
 import { templateResType } from '@/schemaValidations/templates.schema';
 import NoteTable from '@/components/DataTable/components/NoteTable/NoteTable';
+import { resolveImgUrl } from '@/lib/utils';
 
 export const templateColumns: ColumnDef<templateResType>[] = [
     {
@@ -41,14 +43,26 @@ export const templateColumns: ColumnDef<templateResType>[] = [
         accessorKey: 'main_thumbnail',
         header: 'Ảnh chính',
         cell: ({ row }) => (
-            <Image width={50} height={50} src={row.original.main_thumbnail} alt="Main Thumbnail" className="rounded object-cover" />
+            <Image
+                width={50}
+                height={50}
+                src={resolveImgUrl(row.original.main_thumbnail as any)}
+                alt="Main Thumbnail"
+                className="rounded object-cover"
+            />
         ),
     },
     {
         accessorKey: 'sub_thumbnail',
         header: 'Ảnh phụ',
         cell: ({ row }) => (
-            <Image width={50} height={50} src={row.original.sub_thumbnail} alt="Sub Thumbnail" className="rounded object-cover border" />
+            <Image
+                width={50}
+                height={50}
+                src={resolveImgUrl(row.original.sub_thumbnail as any)}
+                alt="Sub Thumbnail"
+                className="rounded object-cover border"
+            />
         ),
     },
     {
@@ -59,7 +73,7 @@ export const templateColumns: ColumnDef<templateResType>[] = [
     {
         accessorKey: 'description',
         header: ({ column }) => <ColumnHeader column={column} title="Mô tả" />,
-        cell: ({ row }) => <NoteTable noteValue={row.original.description} />,
+        cell: ({ row }) => <NoteTable title="Mô tả" noteValue={row.original.description} />,
     },
     {
         accessorKey: 'status',

@@ -33,11 +33,12 @@ interface DataTableProps<TData, TValue> {
     data: TData[];
     showFilter?: boolean;
     showFooter?: boolean;
+    searchField: string;
 }
 
 const cx = classNames.bind(styles);
 
-function DataTable<TData, TValue>({ columns, data, showFilter = true, showFooter = true }: DataTableProps<TData, TValue>) {
+function DataTable<TData, TValue>({ columns, data, showFilter = true, showFooter = true, searchField }: DataTableProps<TData, TValue>) {
     // ----------------State----------------
     const [tableData, setTableData] = React.useState(data);
     const [sorting, setSorting] = React.useState<SortingState>([]);
@@ -97,7 +98,7 @@ function DataTable<TData, TValue>({ columns, data, showFilter = true, showFooter
                     <Button variant={'destructive'}>
                         <Trash />
                     </Button>
-                    <SearchTable table={table} />
+                    <SearchTable table={table} field={searchField} />
                 </div>
                 <div className="rounded-md border">
                     <Table>

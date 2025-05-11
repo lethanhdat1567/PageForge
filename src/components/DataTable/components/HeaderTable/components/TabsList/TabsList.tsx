@@ -35,7 +35,6 @@ type TabsListProps = {
 function TabsList({ value, onChange }: TabsListProps) {
     const pathname = usePathname();
 
-    // Tìm key phù hợp nhất (có thể là path đầy đủ hoặc prefix)
     const matchedKey = Object.keys(tabMap).find((key) => pathname.startsWith(key));
     const tabs = matchedKey ? tabMap[matchedKey] : [];
 

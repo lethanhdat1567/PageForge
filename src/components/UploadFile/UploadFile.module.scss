@@ -1,0 +1,25 @@
+.upload-wrap {
+    border: 1px dashed #ccc;
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    height: 300px;
+    color: #545252;
+    cursor: pointer;
+    &:hover {
+        border: 1px dashed #000;
+    }
+    .input-upload {
+        opacity: 0;
+        visibility: hidden;
+        width: 0;
+        height: 0;
+    }
+    .upload-text {
+        font-size: 14px;
+    }
+}

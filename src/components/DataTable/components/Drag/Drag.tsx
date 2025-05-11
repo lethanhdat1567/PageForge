@@ -6,7 +6,7 @@ import { flexRender } from '@tanstack/react-table';
 import { GripVerticalIcon } from 'lucide-react';
 import { CSS } from '@dnd-kit/utilities';
 
-export function DragHandle({ id }: { id: number }) {
+export function DragHandle({ id }: { id: any }) {
     const { attributes, listeners } = useSortable({
         id,
     });

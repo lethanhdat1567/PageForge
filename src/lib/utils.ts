@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import envConfig from '@/config';
 import { EntityError } from '@/lib/http';
 import { tokensType, userType } from '@/lib/type';
 import { clsx, type ClassValue } from 'clsx';
@@ -37,4 +38,11 @@ export const handleErrorApi = ({ error, setError }: { error: any; setError?: Use
     } else {
         toast.error(error.payload?.message ?? 'Lỗi hệ thống');
     }
+};
+
+export const resolveImgUrl = (url: string) => {
+    const filterUrl = url.startsWith('/') ? url : `/${url}`;
+    const fullUrl = `${envConfig.NEXT_PUBLIC_API_ENDPOINT}${filterUrl}`;
+
+    return fullUrl;
 };

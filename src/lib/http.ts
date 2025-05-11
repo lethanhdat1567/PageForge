@@ -58,13 +58,16 @@ const request = async <Response>(
     options: CustomRequestInit | undefined,
     method: 'GET' | 'POST' | 'PATCH' | 'PUT' | 'DELETE',
 ) => {
-    const body = options?.body ? JSON.stringify(options.body) : null;
+    const isFormData = options?.body instanceof FormData;
+    const body = isFormData ? options.body : options?.body ? JSON.stringify(options.body) : null;
+
     let sessionToken: string | null = null;
     if (isClient()) {
         sessionToken = JSON.parse(localStorage.getItem('tokens') as string)?.accessToken;
     }
+
     const baseHeader = {
-        'Content-type': 'Application/json',
+        ...(isFormData ? {} : { 'Content-type': 'application/json' }),
         ...options?.headers,
         ...(sessionToken ? { Authorization: `Bearer ${sessionToken}` } : {}),
     };

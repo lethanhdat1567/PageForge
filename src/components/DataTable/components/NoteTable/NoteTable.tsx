@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import classNames from 'classnames/bind';
 import styles from './NoteTable.module.scss';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
@@ -7,14 +6,14 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/comp
 
 const cx = classNames.bind(styles);
 
-function NoteTable({ noteValue }: { noteValue: string | undefined }) {
+function NoteTable({ noteValue, title = 'Ghi chú' }: { noteValue: string | undefined; title?: string }) {
     return (
         <Dialog>
             <DialogTrigger className={cx('dialog-content')}>
                 <TooltipProvider>
                     <Tooltip>
                         <TooltipTrigger asChild>
-                            <span className={cx('note-title')}>Ghi chú</span>
+                            <span className={cx('note-title')}>{title}</span>
                         </TooltipTrigger>
                         <TooltipContent>{noteValue}</TooltipContent>
                     </Tooltip>
@@ -22,7 +21,7 @@ function NoteTable({ noteValue }: { noteValue: string | undefined }) {
             </DialogTrigger>
             <DialogContent>
                 <DialogHeader>
-                    <DialogTitle>Ghi chú</DialogTitle>
+                    <DialogTitle>{title}</DialogTitle>
                     <DialogDescription>
                         <Textarea defaultValue={noteValue} className={cx('text-area')} />
                     </DialogDescription>
