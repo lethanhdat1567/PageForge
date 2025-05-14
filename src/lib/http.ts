@@ -108,8 +108,8 @@ const request = async <Response>(
                     body: JSON.stringify({ force: true }),
                     headers: { ...baseHeader },
                 });
-                localStorage.removeItem('tokens');
                 localStorage.removeItem('user');
+                localStorage.removeItem('tokens');
                 location.href = '/login';
             } else {
                 const sessionToken = (options?.headers as any).Authorization.split(' ')[1];
@@ -125,6 +125,7 @@ const request = async <Response>(
             localStorage.setItem('tokens', JSON.stringify((payload as registerResType).data.token));
         } else if ('api/auth/logout' === normalizePath(url as string)) {
             localStorage.removeItem('tokens');
+            localStorage.removeItem('user');
         }
     }
 

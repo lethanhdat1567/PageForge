@@ -14,7 +14,7 @@ import { templateResType } from '@/schemaValidations/templates.schema';
 import NoteTable from '@/components/DataTable/components/NoteTable/NoteTable';
 import { resolveImgUrl } from '@/lib/utils';
 
-export const templateColumns: ColumnDef<templateResType>[] = [
+export const templateColumns = (httpRequest: () => Promise<void>): ColumnDef<templateResType>[] => [
     {
         id: 'drag',
         header: () => null,
@@ -48,7 +48,7 @@ export const templateColumns: ColumnDef<templateResType>[] = [
                 height={50}
                 src={resolveImgUrl(row.original.main_thumbnail as any)}
                 alt="Main Thumbnail"
-                className="rounded object-cover"
+                className="rounded object-cover w-[50px] h-[50px]"
             />
         ),
     },
@@ -61,14 +61,14 @@ export const templateColumns: ColumnDef<templateResType>[] = [
                 height={50}
                 src={resolveImgUrl(row.original.sub_thumbnail as any)}
                 alt="Sub Thumbnail"
-                className="rounded object-cover border"
+                className="rounded object-cover border w-[50px] h-[50px]"
             />
         ),
     },
     {
         accessorKey: 'name',
         header: ({ column }) => <ColumnHeader column={column} title="Tên template" />,
-        cell: ({ row }) => <FormInputTable id={row.original.id} value={row.original.name} />,
+        cell: ({ row }) => <FormInputTable id={row.original.id} value={row.original.name} field="template" />,
     },
     {
         accessorKey: 'description',
@@ -78,12 +78,19 @@ export const templateColumns: ColumnDef<templateResType>[] = [
     {
         accessorKey: 'status',
         header: 'Trạng thái',
-        cell: ({ row }) => <StatusTable value={row.original.status} type="template" />,
+        cell: ({ row }) => (
+            <StatusTable
+                onChange={async () => {
+                    await httpRequest();
+                }}
+                id={row.original.id}
+                value={row.original.status}
+                type="template"
+            />
+        ),
     },
     {
         id: 'actions',
-        cell: ({ row }) => {
-            return <RowAction id={row.original.id} />;
-        },
+        cell: ({ row }) => <RowAction id={row.original.id} field="template" />,
     },
 ];

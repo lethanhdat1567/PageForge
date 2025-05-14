@@ -15,7 +15,6 @@ import { useState } from 'react';
 import PreviewImage from '@/components/PreviewImage/PreviewImage';
 import UploadFile from '@/components/UploadFile/UploadFile';
 import templateApiRequest from '@/HttpRequest/templateRequest';
-import { EntityError } from '@/lib/http';
 import { toast } from 'sonner';
 import { useRouter } from 'next/navigation';
 
@@ -38,63 +37,37 @@ function TemplateForm({ template }: { template?: templateResType }) {
     });
 
     const onSubmit = async (values: templateResType) => {
-        if (template) {
-            try {
-                const formData = new FormData();
+        const formData = new FormData();
 
-                formData.append('name', values.name);
-                formData.append('description', values.description);
-                formData.append('status', values.status);
+        formData.append('name', values.name);
+        formData.append('description', values.description);
+        formData.append('status', values.status);
 
-                // Chỉ upload nếu là File
-                if (values.main_thumbnail instanceof File) {
-                    formData.append('main_thumbnail', values.main_thumbnail);
+        // Chỉ upload nếu là File
+        if (values.main_thumbnail instanceof File) {
+            formData.append('main_thumbnail', values.main_thumbnail);
+        }
+
+        if (values.sub_thumbnail instanceof File) {
+            formData.append('sub_thumbnail', values.sub_thumbnail);
+        }
+        try {
+            const promise = (async () => {
+                if (template) {
+                    await templateApiRequest.updateTemplate(Number(template.id), formData);
+                } else {
+                    await templateApiRequest.createTemplate(formData);
                 }
-
-                if (values.sub_thumbnail instanceof File) {
-                    formData.append('sub_thumbnail', values.sub_thumbnail);
-                }
-
-                await templateApiRequest.updateTemplate(Number(template.id), formData);
-                toast.success('Cập nhật template thành công');
                 router.refresh();
-            } catch (error) {
-                console.error('Error updating template:', error);
-                if (error instanceof EntityError) {
-                    error.payload.errors.forEach((err) => {
-                        form.setError(err.field as keyof templateResType, { message: err.message });
-                    });
-                }
-            }
-        } else {
-            try {
-                const formData = new FormData();
-                formData.append('name', values.name);
-                formData.append('description', values.description);
-                formData.append('status', values.status);
-
-                if (values.main_thumbnail instanceof File) {
-                    formData.append('main_thumbnail', values.main_thumbnail);
-                } else {
-                    formData.append('main_thumbnail_url', values.main_thumbnail);
-                }
-
-                if (values.sub_thumbnail instanceof File) {
-                    formData.append('sub_thumbnail', values.sub_thumbnail);
-                } else {
-                    formData.append('sub_thumbnail_url', values.sub_thumbnail);
-                }
-
-                await templateApiRequest.createTemplate(formData);
-                toast.success('Tạo template thành công');
-            } catch (error) {
-                console.error('Error creating template:', error);
-                if (error instanceof EntityError) {
-                    error.payload.errors.forEach((err) => {
-                        form.setError(err.field as keyof templateResType, { message: err.message });
-                    });
-                }
-            }
+                router.back();
+            })();
+            toast.promise(promise, {
+                loading: 'Đang lưu',
+                success: 'Tạo template thành công',
+                error: 'Tạo template thất bại',
+            });
+        } catch (error) {
+            console.error('Lỗi khi tạo/cập nhật template:', error);
         }
     };
 

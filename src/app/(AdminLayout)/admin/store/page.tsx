@@ -1,6 +1,6 @@
 import classNames from 'classnames/bind';
 import styles from './Store.module.scss';
-import { EllipsisVertical, Eye } from 'lucide-react';
+import { EllipsisVertical, ExternalLink, Eye, SquareArrowOutUpRight } from 'lucide-react';
 import Image from 'next/image';
 import { imgs } from '../../../../../public/images';
 import { Button } from '@/components/ui/button';
@@ -14,9 +14,16 @@ function Store() {
         <div className={cx('wrap')}>
             <div className={cx('head')}>
                 <h1 className={cx('title')}>Giao diện trực tuyến</h1>
-                <button className={cx('view-store')}>
-                    <Eye size={20} /> View your store
-                </button>
+                <div className={cx('btn-wrap')}>
+                    <Link href={'/templates'}>
+                        <button className={cx('view-template')}>
+                            <SquareArrowOutUpRight size={16} /> Ghé thăm kho giao diện
+                        </button>
+                    </Link>
+                    <button className={cx('view-store')}>
+                        <Eye size={20} /> View your store
+                    </button>
+                </div>
             </div>
             <div className={cx('body')}>
                 {/* Main */}

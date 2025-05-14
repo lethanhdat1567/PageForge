@@ -1,0 +1,32 @@
+.title {
+    display: block;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+.content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.content-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.content-lable {
+    font-size: 18px;
+    font-weight: 400;
+    flex: 1;
+    cursor: pointer;
+}
+.checkbox {
+    width: 20px;
+    height: 20px;
+}
+
+.content-wrap {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}

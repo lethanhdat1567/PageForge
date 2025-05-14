@@ -1,7 +1,7 @@
 'use client';
 
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
-import { usePathname } from 'next/navigation';
+import { usePathname, useSearchParams, useRouter } from 'next/navigation';
 
 export type TabItem = {
     value: string;
@@ -22,30 +22,41 @@ const tabMap: Record<string, TabItem[]> = {
     ],
     '/panel/templates': [
         { value: 'all', label: 'Tất cả' },
-        { value: 'public', label: 'Công khai' },
-        { value: 'private', label: 'Không công khai' },
+        { value: 'active', label: 'Công khai' },
+        { value: 'inactive', label: 'Không công khai' },
     ],
 };
 
 type TabsListProps = {
     value?: string;
-    onChange?: (value: string) => void;
 };
 
-function TabsList({ value, onChange }: TabsListProps) {
+function TabsList({ value }: TabsListProps) {
     const pathname = usePathname();
+    const searchParams = useSearchParams();
+    const router = useRouter();
 
     const matchedKey = Object.keys(tabMap).find((key) => pathname.startsWith(key));
     const tabs = matchedKey ? tabMap[matchedKey] : [];
 
+    // Lấy giá trị của 'status' từ query string
+    const statusParam = searchParams.get('status') || value || tabs[0]?.value;
+
     if (!tabs.length) return null;
+
+    const handleChangeStatus = async (value: string) => {
+        if (value !== 'all') {
+            router.push(`${matchedKey}?status=${value}`);
+        } else {
+            router.push(`${matchedKey}`);
+        }
+    };
 
     return (
         <ToggleGroup
             type="single"
-            value={value}
-            defaultValue={value || tabs[0].value}
-            onValueChange={(val) => onChange?.(val)}
+            value={statusParam}
+            onValueChange={(value) => handleChangeStatus(value)}
             className="inline-flex items-center gap-2 rounded-xl bg-[#e7e7e7] p-1"
         >
             {tabs.map((tab) => (

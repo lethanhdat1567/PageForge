@@ -1,0 +1,16 @@
+.wrap {
+    height: var(--private-header-h);
+    display: flex;
+    align-items: center;
+    color: var(--color-white);
+    background-color: #000;
+    .content,
+    .info {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .info {
+        gap: 20px;
+    }
+}

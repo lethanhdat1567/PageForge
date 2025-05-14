@@ -1,0 +1,121 @@
+.wrap {
+    padding: 40px 0px;
+    .title {
+        font-size: 30px;
+        font-weight: 600;
+        margin-bottom: 20px;
+    }
+}
+
+.review-title {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.review-btn {
+    margin-top: 30px;
+    border-radius: 999px;
+    padding: 12px 30px;
+}
+
+.review-progress-wrap {
+    .progress-item-wrap {
+        margin: 10px 0px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        .progress-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            .progress-item-total {
+                font-weight: 500;
+            }
+        }
+    }
+}
+
+.review-item {
+    margin: 50px 0px;
+    .review-item-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        .review-item-head-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+    }
+    .review-item-response {
+        margin-top: 20px;
+        margin-left: 50px;
+        padding-left: 10px;
+        border-left: 4px solid #ccc;
+        .review-item-response-head {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+    }
+}
+.review-item-desc {
+    color: #2d2c2c;
+    font-size: 18px;
+    font-weight: 400;
+}
+.username {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.timer {
+    font-size: 14px;
+    font-weight: 500;
+    color: #6b6969;
+}
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    .feeling-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        padding: 20px 0px;
+
+        &:hover {
+            opacity: 0.6;
+            cursor: pointer;
+        }
+        &.good {
+            border: 1px solid green;
+            background-color: #f3fcf4;
+            color: #008060;
+        }
+        &.neutral {
+            border: 1px solid #d2d5d9;
+            background-color: #fafafa;
+            color: #6b7177;
+        }
+        &.bad {
+            border: 1px solid #c43256;
+            background-color: rgba(196, 50, 86, 0.1);
+            color: #c43256;
+        }
+    }
+    .modal-title {
+        font-size: 16px;
+        font-weight: 500;
+        margin-bottom: 8px;
+    }
+    .text-area {
+        height: 150px;
+    }
+}

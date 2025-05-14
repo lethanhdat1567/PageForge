@@ -40,9 +40,16 @@ export const handleErrorApi = ({ error, setError }: { error: any; setError?: Use
     }
 };
 
-export const resolveImgUrl = (url: string) => {
-    const filterUrl = url.startsWith('/') ? url : `/${url}`;
-    const fullUrl = `${envConfig.NEXT_PUBLIC_API_ENDPOINT}${filterUrl}`;
+export const resolveImgUrl = (url: string | undefined) => {
+    if (url) {
+        if (url.startsWith('https://lh3.googleusercontent.com') || url.startsWith('blob')) {
+            return url;
+        }
+        const filterUrl = url ? (url.startsWith('/') ? url : `/${url}`) : '';
+        const fullUrl = `${envConfig.NEXT_PUBLIC_API_ENDPOINT}${filterUrl}`;
 
-    return fullUrl;
+        return fullUrl;
+    } else {
+        return '';
+    }
 };

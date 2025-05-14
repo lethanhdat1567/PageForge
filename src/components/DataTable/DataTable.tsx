@@ -17,16 +17,14 @@ import {
     VisibilityState,
 } from '@tanstack/react-table';
 import { restrictToVerticalAxis } from '@dnd-kit/modifiers';
-
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { DataTablePagination } from '@/components/DataTablePagination/DataTablePagination';
 import HeaderTable from '@/components/DataTable/components/HeaderTable/HeaderTable';
 import SearchTable from '@/components/DataTable/components/SearchTable/SearchTable';
-import { Button } from '@/components/ui/button';
-import { Trash } from 'lucide-react';
 import { DndContext, closestCenter, DragEndEvent, useSensors, useSensor, MouseSensor, TouchSensor, KeyboardSensor } from '@dnd-kit/core';
 import { arrayMove, SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import { DraggableRow } from '@/components/DataTable/components/Drag/Drag';
+import BulkDestroyBtn from '@/components/DataTable/components/HeaderTable/components/BulkDestroyBtn/BulkDestroyBtn';
 
 interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[];
@@ -34,12 +32,20 @@ interface DataTableProps<TData, TValue> {
     showFilter?: boolean;
     showFooter?: boolean;
     searchField: string;
+    onDestroySelected?: any;
 }
 
 const cx = classNames.bind(styles);
 
-function DataTable<TData, TValue>({ columns, data, showFilter = true, showFooter = true, searchField }: DataTableProps<TData, TValue>) {
-    // ----------------State----------------
+function DataTable<TData, TValue>({
+    columns,
+    data,
+    showFilter = true,
+    showFooter = true,
+    searchField,
+    onDestroySelected,
+}: DataTableProps<TData, TValue>) {
+    // ---------------- State ----------------
     const [tableData, setTableData] = React.useState(data);
     const [sorting, setSorting] = React.useState<SortingState>([]);
     const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
@@ -47,8 +53,7 @@ function DataTable<TData, TValue>({ columns, data, showFilter = true, showFooter
     const [rowSelection, setRowSelection] = React.useState({});
     const sortableId = React.useId();
     const sensors = useSensors(useSensor(MouseSensor, {}), useSensor(TouchSensor, {}), useSensor(KeyboardSensor, {}));
-
-    //  ----------------Table state----------------
+    //  ---------------- Table state ----------------
     const table = useReactTable({
         data: tableData,
         columns,
@@ -95,9 +100,7 @@ function DataTable<TData, TValue>({ columns, data, showFilter = true, showFooter
             <div>
                 {showFilter && <HeaderTable table={table} />}
                 <div className={cx('header-wrap')}>
-                    <Button variant={'destructive'}>
-                        <Trash />
-                    </Button>
+                    <BulkDestroyBtn table={table} onDestroySelected={onDestroySelected} />
                     <SearchTable table={table} field={searchField} />
                 </div>
                 <div className="rounded-md border">

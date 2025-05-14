@@ -43,33 +43,6 @@ export const contactInfoData = [
     'Address: 1234 Main St Moonstone City, Stardust State 12345',
 ];
 
-export const templatesType = [
-    {
-        id: 1,
-        name: 'Link in Bio Page',
-    },
-    {
-        id: 2,
-        name: 'Portfolio Website',
-    },
-    {
-        id: 3,
-        name: 'Landing Page',
-    },
-    {
-        id: 4,
-        name: 'Event Landing Page',
-    },
-    {
-        id: 5,
-        name: 'Event Landing Page',
-    },
-    {
-        id: 6,
-        name: 'Event Landing Page',
-    },
-];
-
 export const howItWorkData = [
     {
         icon: Pencil,

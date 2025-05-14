@@ -8,11 +8,13 @@ import ProfileForm from '@/app/(SingleLayout)/profile/components/ProfileForm/Pro
 import { useState } from 'react';
 import SercurityForm from '@/app/(SingleLayout)/profile/components/SercurityForm/SercurityForm';
 import Link from 'next/link';
+import { useParams } from 'next/navigation';
 
 const cx = classNames.bind(styles);
 
 function Profile() {
     const [activeSection, setActiveSection] = useState(0);
+    const { id } = useParams();
 
     return (
         <div className={cx('wrap')}>
@@ -38,7 +40,7 @@ function Profile() {
                     </div>
                     {/* Content */}
                     <div className={cx('content')}>
-                        {activeSection === 0 && <ProfileForm />}
+                        {activeSection === 0 && <ProfileForm id={id} />}
                         {activeSection === 1 && <SercurityForm />}
                     </div>
                 </div>

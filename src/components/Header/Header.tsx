@@ -7,10 +7,14 @@ import { navbarData } from '@/lib/data';
 import Link from 'next/link';
 import SignInButton from '@/components/SignInButton/SignInButton';
 import SliceSession from '@/components/SliceSession/SliceSession';
+import { useAppContext } from '@/app/AppProvider';
+import HeaderPublicUser from '@/components/HeaderPublicUser/HeaderPublicUser';
 
 const cx = classNames.bind(styles);
 
 function Header() {
+    const { user } = useAppContext();
+
     return (
         <header className={cx('wrap')}>
             <Logo />
@@ -21,9 +25,13 @@ function Header() {
                     </Link>
                 ))}
             </nav>
-            <Link href={'/register'}>
-                <SignInButton />
-            </Link>
+            {user ? (
+                <HeaderPublicUser />
+            ) : (
+                <Link href={'/register'}>
+                    <SignInButton />
+                </Link>
+            )}
             <SliceSession />
         </header>
     );
