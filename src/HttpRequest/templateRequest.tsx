@@ -2,8 +2,8 @@ import https from '@/lib/http';
 
 const templateApiRequest = {
     // Lấy danh sách tất cả template
-    getAll: ({ status, search }: { status: string; search: string }, sessionToken?: string) =>
-        https.get(`/templates?status=${status || ''}&search=${search || ''}`, {
+    getAll: ({ status, search, sort }: { status?: string; search?: string; sort?: string }, sessionToken?: string) =>
+        https.get(`/templates?status=${status || ''}&search=${search || ''}&sort=${sort}`, {
             ...(sessionToken && {
                 headers: {
                     Authorization: `Bearer ${sessionToken}`,
@@ -13,12 +13,7 @@ const templateApiRequest = {
         }),
 
     // Lấy chi tiết 1 template theo ID
-    getById: (id: number, sessionToken: string | undefined) =>
-        https.get(`/templates/${id}`, {
-            headers: {
-                Authorization: `Bearer ${sessionToken}`,
-            },
-        }),
+    getById: (id: number | string | undefined) => https.get(`/templates/${id}`),
 
     // Tạo mới template (dùng FormData để upload file)
     createTemplate: (formData: FormData) => {

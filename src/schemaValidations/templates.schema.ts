@@ -14,7 +14,11 @@ export const templateBody = z
         description: z.string().nonempty('Mô tả không được để trống'),
         main_thumbnail: fileOrUrl,
         sub_thumbnail: fileOrUrl,
+        banner: fileOrUrl,
+        price: z.string().optional(),
         status: z.enum(['active', 'inactive']),
+        created_at: z.string().optional(),
+        updated_at: z.string().optional(),
     })
     .strict();
 

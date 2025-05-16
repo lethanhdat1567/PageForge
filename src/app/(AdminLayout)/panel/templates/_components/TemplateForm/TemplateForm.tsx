@@ -24,14 +24,18 @@ function TemplateForm({ template }: { template?: templateResType }) {
     const router = useRouter();
     const [mainFile, setMainFile] = useState<File | null>(null);
     const [subFile, setSubFile] = useState<File | null>(null);
+    const [bannerFile, setBannerFile] = useState<File | null>(null);
+    const [isPaid, setIsPaid] = useState(false);
 
     const form = useForm<z.infer<typeof templateBody>>({
         resolver: zodResolver(templateBody),
         defaultValues: {
             name: template?.name ?? '',
+            price: template?.price ?? '',
             description: template?.description ?? '',
             main_thumbnail: template?.main_thumbnail,
             sub_thumbnail: template?.sub_thumbnail,
+            banner: template?.banner,
             status: template?.status ?? 'active',
         },
     });
@@ -42,6 +46,9 @@ function TemplateForm({ template }: { template?: templateResType }) {
         formData.append('name', values.name);
         formData.append('description', values.description);
         formData.append('status', values.status);
+        if (values.price && values.price !== '') {
+            formData.append('price', values.price);
+        }
 
         // Chỉ upload nếu là File
         if (values.main_thumbnail instanceof File) {
@@ -50,6 +57,10 @@ function TemplateForm({ template }: { template?: templateResType }) {
 
         if (values.sub_thumbnail instanceof File) {
             formData.append('sub_thumbnail', values.sub_thumbnail);
+        }
+
+        if (values.banner instanceof File) {
+            formData.append('banner', values.banner);
         }
         try {
             const promise = (async () => {
@@ -111,7 +122,63 @@ function TemplateForm({ template }: { template?: templateResType }) {
                             </FormItem>
                         )}
                     />
+                    <FormField
+                        control={form.control}
+                        name="price"
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>Loại Template</FormLabel>
+                                <FormControl>
+                                    <Select
+                                        onValueChange={(value) => {
+                                            if (value === 'free') {
+                                                setIsPaid(false);
+                                                field.onChange('');
+                                            } else {
+                                                setIsPaid(true);
+                                                field.onChange(''); // hoặc giá mặc định như '10000'
+                                            }
+                                        }}
+                                        value={isPaid ? 'paid' : 'free'}
+                                    >
+                                        <SelectTrigger className="w-[180px]">
+                                            <SelectValue placeholder="Chọn loại template" />
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                            <SelectGroup>
+                                                <SelectItem value="free">Miễn phí</SelectItem>
+                                                <SelectItem value="paid">Có phí</SelectItem>
+                                            </SelectGroup>
+                                        </SelectContent>
+                                    </Select>
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
                 </div>
+
+                {isPaid && (
+                    <FormField
+                        control={form.control}
+                        name="price"
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>Giá tiền (VNĐ)</FormLabel>
+                                <FormControl>
+                                    <Input
+                                        {...field}
+                                        type="number"
+                                        min={0}
+                                        onChange={(e) => field.onChange(e.target.value)}
+                                        placeholder="Nhập giá tiền"
+                                    />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                )}
 
                 <FormField
                     control={form.control}
@@ -204,6 +271,44 @@ function TemplateForm({ template }: { template?: templateResType }) {
                         }}
                     />
                 </div>
+                <FormField
+                    control={form.control}
+                    name="banner"
+                    render={({ field }) => {
+                        return (
+                            <FormItem>
+                                <FormLabel>Banner</FormLabel>
+                                <FormControl>
+                                    {bannerFile || form.watch('banner') ? (
+                                        <PreviewImage
+                                            src={bannerFile || form.watch('banner')}
+                                            alt="Ảnh banner"
+                                            width={'100%'}
+                                            height={300}
+                                            onDestroy={() => {
+                                                field.onChange(null);
+                                                setBannerFile(null);
+                                            }}
+                                        />
+                                    ) : (
+                                        <UploadFile
+                                            name={field.name}
+                                            label="Upload banner"
+                                            onChange={(e) => {
+                                                const file = e.target.files?.[0];
+                                                if (file) {
+                                                    setBannerFile(file);
+                                                    field.onChange(file);
+                                                }
+                                            }}
+                                        />
+                                    )}
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        );
+                    }}
+                />
 
                 <div className="flex justify-end">
                     <Button type="submit">Thêm Template</Button>

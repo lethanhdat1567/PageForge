@@ -6,10 +6,12 @@ import Recommend from '@/app/(HeaderOnlyLayout)/templates/[id]/_components/Recom
 
 const cx = classNames.bind(styles);
 
-function TemplateDetail() {
+async function TemplateDetail({ params }: { params: { id: string } }) {
+    const { id } = await params;
+
     return (
         <div className={cx('wrap')}>
-            <Info />
+            <Info id={id} />
             <Review />
             <Recommend />
         </div>

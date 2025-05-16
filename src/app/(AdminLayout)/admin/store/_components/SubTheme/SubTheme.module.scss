@@ -64,3 +64,37 @@
     align-items: center;
     gap: 10px;
 }
+
+.section-info-main {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    .main-info-wrap {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+    .main-title-wrap {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        .main-title {
+            font-size: 18px;
+            font-weight: 500;
+        }
+        .main-sub {
+            background-color: rgba(175, 254, 191, 1);
+            color: rgba(1, 75, 64, 1);
+            padding: 4px 8px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+    }
+    .main-save-desc {
+        font-size: 16px;
+        font-weight: 400;
+        color: #444343;
+    }
+}

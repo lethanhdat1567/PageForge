@@ -19,6 +19,7 @@ import {
 import templateApiRequest from '@/HttpRequest/templateRequest';
 import { toast } from 'sonner';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 function RowAction({ id, field }: { id: any; field: 'template' }) {
     const router = useRouter();
@@ -38,6 +39,14 @@ function RowAction({ id, field }: { id: any; field: 'template' }) {
         }
     };
 
+    const filterHref = () => {
+        if (field === 'template') {
+            return `/panel/templates/update/${id}`;
+        } else {
+            return '';
+        }
+    };
+
     return (
         <>
             <DropdownMenu open={showDropdown} modal={false}>
@@ -49,7 +58,9 @@ function RowAction({ id, field }: { id: any; field: 'template' }) {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
                     <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                    <DropdownMenuItem variant="default">Cập nhật</DropdownMenuItem>
+                    <DropdownMenuItem variant="default">
+                        <Link href={filterHref()}>Cập nhật</Link>
+                    </DropdownMenuItem>
                     <AlertDialog>
                         <AlertDialogTrigger className="w-full">
                             <DropdownMenuItem variant="destructive">Xóa</DropdownMenuItem>

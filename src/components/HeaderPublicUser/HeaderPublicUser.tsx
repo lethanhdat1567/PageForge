@@ -19,7 +19,7 @@ function HeaderPublicUser() {
         <DropdownMenu>
             <DropdownMenuTrigger className="cursor-pointer">
                 <Avatar className="rounded-sm w-10 h-10">
-                    <AvatarImage src={resolveImgUrl(user?.avatar)} alt="@shadcn" className="rounded-none object-cover" />
+                    <AvatarImage src={resolveImgUrl(user?.avatar)} alt="avatar" className="rounded-none object-cover" />
                     <AvatarFallback className="rounded-none">CN</AvatarFallback>
                 </Avatar>
             </DropdownMenuTrigger>

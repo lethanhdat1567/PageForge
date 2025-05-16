@@ -10,31 +10,17 @@ export async function middleware(request: NextRequest) {
     const sessionToken = request.cookies.get('sessionToken')?.value;
     const role = request.cookies.get('role')?.value;
 
+    // get subdomain
     const domain = request.headers.get('host') || '';
     const splitDomain = domain.split('.');
     const hasSubdomain = splitDomain.length >= 2;
 
     if (hasSubdomain) {
-        const storename = splitDomain[0]; // Lấy subdomain, ví dụ 'test1'
-
-        let templateFolder;
-
-        // Chọn thư mục template dựa trên tên subdomain
-        switch (storename) {
-            case 'test1':
-                templateFolder = 'test1';
-                break; // Thêm break để dừng lại sau khi xử lý 'test1'
-            case 'test2':
-                templateFolder = 'test2';
-                break; // Thêm break để dừng lại sau khi xử lý 'test2'
-            default:
-                templateFolder = 'default'; // Nếu không phải test1 hay test2, dùng template mặc định
-                break;
-        }
+        const storename = splitDomain[0];
 
         // Rewrite lại URL mà không thay đổi URL trong thanh địa chỉ của người dùng
-        const newUrl = pathname.replace('/test1', ''); // Chỉ cần thay '/test1' nếu có, nếu cần thay đổi khác thì sửa phần này
-        return NextResponse.rewrite(new URL(`/${templateFolder}${newUrl}`, request.url));
+        const newUrl = `/theme/${storename}${pathname}`;
+        return NextResponse.rewrite(new URL(newUrl, request.url));
     }
 
     // Nếu không có subdomain → dùng logic phân quyền

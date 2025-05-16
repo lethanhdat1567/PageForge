@@ -28,6 +28,9 @@
     flex-direction: column;
     gap: 10px;
     .info-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
         cursor: pointer;
         padding: 10px;
         border: 1px solid #ccc;

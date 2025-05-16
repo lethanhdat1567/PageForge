@@ -15,7 +15,7 @@ export default function MainLayout({
             <div className="container px-16">
                 <Header />
             </div>
-            <div className="container px-16">{children}</div>
+            <div>{children}</div>
             <Footer />
         </div>
     );

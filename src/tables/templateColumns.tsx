@@ -13,6 +13,7 @@ import Image from 'next/image';
 import { templateResType } from '@/schemaValidations/templates.schema';
 import NoteTable from '@/components/DataTable/components/NoteTable/NoteTable';
 import { resolveImgUrl } from '@/lib/utils';
+import FilterPrice from '@/components/DataTable/components/FilterPrice/FilterPrice';
 
 export const templateColumns = (httpRequest: () => Promise<void>): ColumnDef<templateResType>[] => [
     {
@@ -69,6 +70,11 @@ export const templateColumns = (httpRequest: () => Promise<void>): ColumnDef<tem
         accessorKey: 'name',
         header: ({ column }) => <ColumnHeader column={column} title="Tên template" />,
         cell: ({ row }) => <FormInputTable id={row.original.id} value={row.original.name} field="template" />,
+    },
+    {
+        accessorKey: 'price',
+        header: 'Giá tiền',
+        cell: ({ row }) => <FilterPrice value={row.original.price} />,
     },
     {
         accessorKey: 'description',

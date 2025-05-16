@@ -1,15 +1,63 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+'use client';
+
 import classNames from 'classnames/bind';
 import styles from './Store.module.scss';
-import { EllipsisVertical, ExternalLink, Eye, SquareArrowOutUpRight } from 'lucide-react';
-import Image from 'next/image';
-import { imgs } from '../../../../../public/images';
-import { Button } from '@/components/ui/button';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
+import { Eye, SquareArrowOutUpRight } from 'lucide-react';
+
 import Link from 'next/link';
+import userTemplateApiRequest from '@/HttpRequest/userTemplateRequest';
+import { useAppContext } from '@/app/AppProvider';
+import { useCallback, useEffect, useState } from 'react';
+import { toast } from 'sonner';
+import MainTheme from '@/app/(AdminLayout)/admin/store/_components/MainTheme/MainTheme';
+import SubTheme from '@/app/(AdminLayout)/admin/store/_components/SubTheme/SubTheme';
 
 const cx = classNames.bind(styles);
 
 function Store() {
+    const { user } = useAppContext();
+    const [templates, setTemplates] = useState<any[]>([]);
+
+    const httpRequest = useCallback(async () => {
+        if (user) {
+            const result = await userTemplateApiRequest.getById(user?.id);
+            setTemplates((result.payload as any).data);
+        }
+    }, [user]);
+
+    useEffect(() => {
+        httpRequest();
+    }, [httpRequest]);
+
+    const handlePublichTheme = async (template_id: any) => {
+        toast.promise(
+            async () => {
+                await userTemplateApiRequest.updatePublish(user?.id, template_id);
+                httpRequest();
+            },
+            {
+                loading: 'Đang lưu',
+                success: 'Đã lưu thành công',
+                error: 'Có lỗi xảy ra',
+            },
+        );
+    };
+
+    const handleDestroy = async (id: any) => {
+        toast.promise(
+            async () => {
+                await userTemplateApiRequest.destroy(id);
+                httpRequest();
+            },
+            {
+                loading: 'Đang lưu',
+                success: 'Đã lưu thành công',
+                error: 'Có lỗi xảy ra',
+            },
+        );
+    };
+
     return (
         <div className={cx('wrap')}>
             <div className={cx('head')}>
@@ -27,26 +75,12 @@ function Store() {
             </div>
             <div className={cx('body')}>
                 {/* Main */}
-                <div className={cx('main-section')}>
-                    <div className={cx('banner')}>
-                        <Image alt="Template image" width={600} height={300} src={imgs.HeroBanner} />
-                    </div>
-                    <div className={cx('section-info-main')}>
-                        <div className={cx('main-info-wrap')}>
-                            <Image alt="Template image" width={100} height={100} src={imgs.HeroBanner} />
-                            <div className={cx('main-section-info')}>
-                                <div className={cx('main-title-wrap')}>
-                                    <h2 className={cx('main-title')}>theme-export-markezan-com-broadcast-06mar2025</h2>
-                                    <span className={cx('main-sub')}>Theme đang sử dụng</span>
-                                </div>
-                                <p className={cx('main-save-desc')}>Lưu lần cuối: Apr 25 at 4:06 pm GMT+2</p>
-                            </div>
-                        </div>
-                        <Link href={'/admin/editor'}>
-                            <Button variant={'default'}>Tùy chỉnh</Button>
-                        </Link>
-                    </div>
-                </div>
+                {templates.map((templateData) => {
+                    const template = templateData.template;
+
+                    return templateData.status === 'active' && <MainTheme template={template} />;
+                })}
+
                 {/* Sub section */}
                 <div className={cx('sub-section')}>
                     <h3 className={cx('sub-title')}>Kho themes</h3>
@@ -55,121 +89,18 @@ function Store() {
                         mình.
                     </p>
                     {/* Item */}
-                    <div className={cx('sub-item')}>
-                        <div className={cx('section-info-main')}>
-                            <div className={cx('main-info-wrap')}>
-                                <Image alt="Template image" width={100} height={100} src={imgs.HeroBanner} />
-                                <div className={cx('main-section-info')}>
-                                    <div className={cx('main-title-wrap')}>
-                                        <h2 className={cx('main-title')}>theme-export-markezan-com-broadcast-06mar2025</h2>
-                                    </div>
-                                    <p className={cx('main-save-desc')}>Lưu lần cuối: Apr 25 at 4:06 pm GMT+2</p>
-                                </div>
-                            </div>
-                            <div className={cx('utils')}>
-                                <DropdownMenu>
-                                    <DropdownMenuTrigger asChild>
-                                        <Button variant={'outline'}>
-                                            <EllipsisVertical />
-                                        </Button>
-                                    </DropdownMenuTrigger>
-                                    <DropdownMenuContent>
-                                        <DropdownMenuItem>Xem trước</DropdownMenuItem>
-                                        <DropdownMenuItem variant="destructive">Xóa theme</DropdownMenuItem>
-                                    </DropdownMenuContent>
-                                </DropdownMenu>
-                                <Button variant={'outline'}>Publish theme</Button>
-                                <Button variant={'default'}>Tùy chỉnh</Button>
-                            </div>
-                        </div>
-                    </div>
-                    {/* Item */}
-                    <div className={cx('sub-item')}>
-                        <div className={cx('section-info-main')}>
-                            <div className={cx('main-info-wrap')}>
-                                <Image alt="Template image" width={100} height={100} src={imgs.HeroBanner} />
-                                <div className={cx('main-section-info')}>
-                                    <div className={cx('main-title-wrap')}>
-                                        <h2 className={cx('main-title')}>theme-export-markezan-com-broadcast-06mar2025</h2>
-                                    </div>
-                                    <p className={cx('main-save-desc')}>Lưu lần cuối: Apr 25 at 4:06 pm GMT+2</p>
-                                </div>
-                            </div>
-                            <div className={cx('utils')}>
-                                <DropdownMenu>
-                                    <DropdownMenuTrigger asChild>
-                                        <Button variant={'outline'}>
-                                            <EllipsisVertical />
-                                        </Button>
-                                    </DropdownMenuTrigger>
-                                    <DropdownMenuContent>
-                                        <DropdownMenuItem>Xem trước</DropdownMenuItem>
-                                        <DropdownMenuItem variant="destructive">Xóa theme</DropdownMenuItem>
-                                    </DropdownMenuContent>
-                                </DropdownMenu>
-                                <Button variant={'outline'}>Publish theme</Button>
-                                <Button variant={'default'}>Tùy chỉnh</Button>
-                            </div>
-                        </div>
-                    </div>
-                    {/* Item */}
-                    <div className={cx('sub-item')}>
-                        <div className={cx('section-info-main')}>
-                            <div className={cx('main-info-wrap')}>
-                                <Image alt="Template image" width={100} height={100} src={imgs.HeroBanner} />
-                                <div className={cx('main-section-info')}>
-                                    <div className={cx('main-title-wrap')}>
-                                        <h2 className={cx('main-title')}>theme-export-markezan-com-broadcast-06mar2025</h2>
-                                    </div>
-                                    <p className={cx('main-save-desc')}>Lưu lần cuối: Apr 25 at 4:06 pm GMT+2</p>
-                                </div>
-                            </div>
-                            <div className={cx('utils')}>
-                                <DropdownMenu>
-                                    <DropdownMenuTrigger asChild>
-                                        <Button variant={'outline'}>
-                                            <EllipsisVertical />
-                                        </Button>
-                                    </DropdownMenuTrigger>
-                                    <DropdownMenuContent>
-                                        <DropdownMenuItem>Xem trước</DropdownMenuItem>
-                                        <DropdownMenuItem variant="destructive">Xóa theme</DropdownMenuItem>
-                                    </DropdownMenuContent>
-                                </DropdownMenu>
-                                <Button variant={'outline'}>Publish theme</Button>
-                                <Button variant={'default'}>Tùy chỉnh</Button>
-                            </div>
-                        </div>
-                    </div>
-                    {/* Item */}
-                    <div className={cx('sub-item')}>
-                        <div className={cx('section-info-main')}>
-                            <div className={cx('main-info-wrap')}>
-                                <Image alt="Template image" width={100} height={100} src={imgs.HeroBanner} />
-                                <div className={cx('main-section-info')}>
-                                    <div className={cx('main-title-wrap')}>
-                                        <h2 className={cx('main-title')}>theme-export-markezan-com-broadcast-06mar2025</h2>
-                                    </div>
-                                    <p className={cx('main-save-desc')}>Lưu lần cuối: Apr 25 at 4:06 pm GMT+2</p>
-                                </div>
-                            </div>
-                            <div className={cx('utils')}>
-                                <DropdownMenu>
-                                    <DropdownMenuTrigger asChild>
-                                        <Button variant={'outline'}>
-                                            <EllipsisVertical />
-                                        </Button>
-                                    </DropdownMenuTrigger>
-                                    <DropdownMenuContent>
-                                        <DropdownMenuItem>Xem trước</DropdownMenuItem>
-                                        <DropdownMenuItem variant="destructive">Xóa theme</DropdownMenuItem>
-                                    </DropdownMenuContent>
-                                </DropdownMenu>
-                                <Button variant={'outline'}>Publish theme</Button>
-                                <Button variant={'default'}>Tùy chỉnh</Button>
-                            </div>
-                        </div>
-                    </div>
+                    {templates.map((templateData) => {
+                        const template = templateData.template;
+                        return (
+                            templateData.status === 'inactive' && (
+                                <SubTheme
+                                    template={template}
+                                    onPublish={() => handlePublichTheme(template.id)}
+                                    onDestroy={() => handleDestroy(templateData.id)}
+                                />
+                            )
+                        );
+                    })}
                 </div>
             </div>
         </div>

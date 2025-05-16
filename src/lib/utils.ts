@@ -53,3 +53,15 @@ export const resolveImgUrl = (url: string | undefined) => {
         return '';
     }
 };
+
+export const formatDate = (date: string) => {
+    if (date) {
+        const formatDate = new Date(date);
+        return formatDate.toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+        });
+    }
+    return '';
+};

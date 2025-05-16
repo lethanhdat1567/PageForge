@@ -10,9 +10,9 @@ function Recommend() {
             <div className="container px-26">
                 <h2 className={cx('title')}>Những theme khác bạn có thể thích</h2>
                 <div className="grid grid-cols-3 gap-10">
+                    {/* <TemplateCard />
                     <TemplateCard />
-                    <TemplateCard />
-                    <TemplateCard />
+                    <TemplateCard /> */}
                 </div>
             </div>
         </div>
