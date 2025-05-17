@@ -1,6 +1,5 @@
 import classNames from 'classnames/bind';
 import styles from './Recommend.module.scss';
-import TemplateCard from '@/components/TemplateCard/TemplateCard';
 
 const cx = classNames.bind(styles);
 

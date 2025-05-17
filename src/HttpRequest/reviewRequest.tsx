@@ -12,24 +12,12 @@ const reviewApiRequest = {
             }),
         }),
     // Lấy danh sách reviews theo template_id
-    getByTemplateId: (template_id: number, sessionToken?: string) =>
-        https.get(`/reviews/template/${template_id}`, {
-            ...(sessionToken && {
-                headers: {
-                    Authorization: `Bearer ${sessionToken}`,
-                },
-            }),
-        }),
+    getByTemplateId: (template_id: number) => https.get(`/reviews/by-template/${template_id}`),
+
+    getAnalysh: (template_id: number) => https.get(`/reviews/analysh/${template_id}`),
 
     // Lấy 1 review cụ thể theo ID
-    getById: (id: number, sessionToken?: string) =>
-        https.get(`/reviews/${id}`, {
-            ...(sessionToken && {
-                headers: {
-                    Authorization: `Bearer ${sessionToken}`,
-                },
-            }),
-        }),
+    getById: (id: number) => https.get(`/reviews/${id}`),
 
     // Tạo review mới
     create: (
@@ -57,15 +45,7 @@ const reviewApiRequest = {
             rating?: 'good' | 'neutral' | 'bad';
             content?: string;
         },
-        sessionToken?: string,
-    ) =>
-        https.put(`/reviews/${id}`, data, {
-            ...(sessionToken && {
-                headers: {
-                    Authorization: `Bearer ${sessionToken}`,
-                },
-            }),
-        }),
+    ) => https.put(`/reviews/${id}`, data),
 
     // Xoá 1 review
     delete: (id: number, sessionToken?: string) =>

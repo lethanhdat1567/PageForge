@@ -12,7 +12,7 @@ async function TemplateDetail({ params }: { params: { id: string } }) {
     return (
         <div className={cx('wrap')}>
             <Info id={id} />
-            <Review />
+            <Review id={id} />
             <Recommend />
         </div>
     );

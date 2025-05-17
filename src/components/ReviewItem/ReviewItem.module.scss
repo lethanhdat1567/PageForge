@@ -1,0 +1,62 @@
+.review-item {
+    margin-bottom: 40px;
+    .review-item-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        .review-item-head-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+    }
+    .review-item-response {
+        margin-top: 20px;
+        margin-left: 50px;
+        padding-left: 10px;
+        border-left: 4px solid #ccc;
+        .review-item-response-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            .left {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+        }
+    }
+}
+.review-item-desc {
+    color: #2d2c2c;
+    font-size: 16px;
+    font-weight: 400;
+}
+.username {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.timer {
+    font-size: 14px;
+    font-weight: 500;
+    color: #6b6969;
+}
+.right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.respone-text {
+    font-size: 14px;
+    font-weight: 600;
+    color: #7c7a7a;
+    display: flex;
+    margin: 10px auto;
+    cursor: pointer;
+    &:hover {
+        text-decoration: underline;
+    }
+}
