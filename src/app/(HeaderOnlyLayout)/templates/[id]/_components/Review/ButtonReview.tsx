@@ -116,7 +116,7 @@ function ButtonReview() {
             }
 
             setOpen(false);
-            router.refresh(); // chỉ cần refresh một lần ở ngoài
+            router.refresh();
         } catch (error) {
             console.error(error);
         }

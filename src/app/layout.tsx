@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import { Space_Grotesk } from 'next/font/google';
 import './globals.css';
-import 'aos/dist/aos.css';
 import GlobalStyle from '@/components/GlobalStyle/GlobalStyle';
 import { Toaster } from '@/components/ui/sonner';
 import AppProvider from '@/app/AppProvider';
